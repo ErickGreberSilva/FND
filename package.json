@@ -21,7 +21,9 @@
     "@tailwindcss/postcss": "^4.0.9",
     "apexcharts": "^4.3.0",
     "autoprefixer": "^10.4.20",
+    "esri-leaflet": "^3.0.19",
     "flatpickr": "^4.6.13",
+    "leaflet": "^1.9.4",
     "next": "15.2.3",
     "react": "^19.0.0",
     "react-apexcharts": "^1.7.0",
@@ -29,6 +31,7 @@
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^19.0.0",
     "react-dropzone": "^14.3.5",
+    "react-leaflet": "^5.0.0",
     "swiper": "^11.2.0",
     "tailwind-merge": "^2.6.0"
   },
