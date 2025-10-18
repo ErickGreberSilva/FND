@@ -1,10 +1,11 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import { ChartAreaInteractive } from "@/components/chart-area-interactive";
 import { DataTable } from "@/components/data-table";
-import { SectionCards } from "@/components/section-cards";
+// import { SectionCards } from "@/components/section-cards";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import MAPA from "@/components/Consulta/mapa";
+import PotencialTable from "@/components/Consulta/PotencialTable";
 import data from "./data.json";
 
 import Potencial from "@/components/Consulta/Potencial";
@@ -24,11 +25,12 @@ export default function Home() {
         <SiteHeader />
         <div className="flex flex-1 flex-col">
           <div className="@container/main flex flex-1 flex-col gap-2">
-            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-              {/* <SectionCards /> */}
+            <div className="flex flex-col gap-4 pt-0 md:gap-6 md:py-6 md:pt-0">
               <Potencial />
-              <MAPA />
+
+              {/* <MAPA /> */}
               <div className="px-4 lg:px-6">
+                              <PotencialTable />
                 <ChartAreaInteractive />
               </div>
               <DataTable data={data} />

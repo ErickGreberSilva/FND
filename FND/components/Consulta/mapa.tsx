@@ -36,7 +36,8 @@ export default function MAPA() {
   return (
     <div
       ref={mapRef}
-      style={{ margin:'0 30px', height: '500px', borderRadius: '8px' }}
+      style={{ margin:'0 30px', height: '500px', borderRadius: '8px',}}
+      className='customshadow'
     />
   );
 }
