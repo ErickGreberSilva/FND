@@ -68,7 +68,10 @@ export default function Potencial() {
             layers: [23, 15, 34],
             opacity: 0.8,
           }).addTo(m);
-
+L.esri.dynamicMapLayer({
+  url: "https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_Interno_GeoCuritiba_BaseCartografica_para_BC/MapServer",
+  opacity: 0.9,
+}).addTo(m);
           L.control.zoom({ position: 'topright' }).addTo(m);
           setMap(m);
         }

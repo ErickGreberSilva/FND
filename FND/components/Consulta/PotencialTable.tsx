@@ -154,10 +154,10 @@ export default function ResultadoLote() {
   return (
     <div className="space-y-6">
       <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
-        <div className="px-4 py-3 font-semibold border-b bg-muted/30 text-sm">
+        <div className="px-4 py-1 font-semibold border-b  rounded-lg text-lg bg-primary">
           Dados Básicos
         </div>
-        <div className="flex justify-around items-center p-4 text-sm">
+        <div className="flex flex-row justify-around items-center content-center p-4 text-base">
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             {Object.entries(dados.basico).map(([campo, valor]) => (
               <div
@@ -193,7 +193,7 @@ function SeccaoTabela({
 }) {
   return (
     <>
-      <div className="px-4 py-3 font-semibold border-b text-sm">{titulo}</div>
+      <div className="px-4 py-3 font-semibold border-b text-lg text-primary ">{titulo}</div>
       <div className="overflow-hidden rounded-lg border">
         <div className="relative w-full overflow-x-auto">
           <Table className="w-full caption-bottom text-sm">
