@@ -15,7 +15,6 @@ declare global {
 function loadScript(src: string): Promise<void> {
   return new Promise((resolve, reject) => {
     if (document.querySelector(`script[src="${src}"]`)) {
-      // Já carregado
       resolve();
       return;
     }
@@ -37,12 +36,24 @@ export default function Potencial() {
   useEffect(() => {
     const initMap = async () => {
       try {
-        // Carrega Leaflet e esri-leaflet se não estiverem presentes
         if (typeof window.L === 'undefined') {
           await loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js');
         }
         if (typeof window.L?.esri === 'undefined') {
           await loadScript('https://unpkg.com/esri-leaflet@3.0.12/dist/esri-leaflet.js');
+        }
+
+        // ✅ Define o ícone personalizado como padrão global
+        if (window.L && !window.L.Icon.Default.prototype._getIconUrl) {
+          window.L.Icon.Default.mergeOptions({
+            iconUrl: '/marker-icon.png',
+            shadowUrl: '/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41],
+            shadowAnchor: [13, 41],
+          });
         }
 
         if (mapRef.current && !mapRef.current.hasChildNodes()) {
@@ -56,25 +67,37 @@ export default function Potencial() {
             zoomControl: false,
           });
 
-          // Ortofotos 2019 – REMOVA OS ESPAÇOS NAS URLS!
+          // Ortofotos 2019
           L.esri.tiledMapLayer({
             url: "https://geocuritiba.ippuc.org.br/server/rest/services/Hosted/Ortofotos2019/MapServer",
             maxZoom: 22,
           }).addTo(m);
 
-          // Camadas dinâmicas
+          // Base Cartográfica
+          const baseCartograficaLayer = L.esri.dynamicMapLayer({
+            url: "https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_Interno_GeoCuritiba_BaseCartografica_para_BC/MapServer",
+            opacity: 0.9,
+          }).addTo(m);
+
+          // Camadas cadastrais
           L.esri.dynamicMapLayer({
             url: "https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_GeoCuritiba_MapaCadastral/MapServer",
             layers: [23, 15, 34],
             opacity: 0.8,
           }).addTo(m);
-L.esri.dynamicMapLayer({
-  url: "https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_Interno_GeoCuritiba_BaseCartografica_para_BC/MapServer",
-  opacity: 0.9,
-}).addTo(m);
+
           L.control.zoom({ position: 'topright' }).addTo(m);
           setMap(m);
+           const overlays = {
+  "Base Cartográfica": baseCartograficaLayer,
+};
+
+L.control.layers(null, overlays, {
+  position: 'topright', // ou 'bottomright', etc.
+  collapsed: true,      // começa recolhido
+}).addTo(m);
         }
+       
       } catch (err) {
         console.error('Erro ao inicializar o mapa:', err);
       }
@@ -83,18 +106,17 @@ L.esri.dynamicMapLayer({
     initMap();
   }, []);
 
-  // Efeito de busca – agora com verificação de L.esri
+  // Efeito de busca – destaca lote e adiciona marcador com ícone personalizado (padrão global)
   useEffect(() => {
     if (!ifiscal || !map || typeof window.L?.esri === 'undefined') return;
 
-    // Remove camadas de destaque anteriores
+    // Remove camadas de destaque anteriores (camada 16)
     map.eachLayer((layer: any) => {
       if (layer.options?.url?.includes('/MapServer/16')) {
         map.removeLayer(layer);
       }
     });
 
-    // Agora é seguro usar L.esri
     const L = window.L;
     const highlightLayer = L.esri.featureLayer({
       url: "https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_GeoCuritiba_MapaCadastral/MapServer/16",
@@ -110,7 +132,7 @@ L.esri.dynamicMapLayer({
       });
     });
 
-    // Buscar coordenadas (opcional)
+    // Buscar coordenadas e adicionar marcador (usará o ícone padrão personalizado)
     const fetchCoords = async () => {
       try {
         const url15 = `https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_GeoCuritiba_MapaCadastral/MapServer/15/query?where=gtm_ind_fiscal='${ifiscal}'&outFields=x_coord,y_coord&f=json`;
@@ -120,6 +142,15 @@ L.esri.dynamicMapLayer({
           const { x_coord, y_coord } = data.features[0].attributes;
           if (x_coord && y_coord) {
             const [lat, lon] = utmToLatLon(parseFloat(x_coord), parseFloat(y_coord));
+
+            // Remove marcadores anteriores (opcional, mas recomendado)
+            map.eachLayer((layer: any) => {
+              if (layer instanceof L.Marker) {
+                map.removeLayer(layer);
+              }
+            });
+
+            // Cria marcador — usa automaticamente o ícone padrão personalizado
             L.marker([lat, lon])
               .addTo(map)
               .bindPopup(`Lote: ${ifiscal}`)
