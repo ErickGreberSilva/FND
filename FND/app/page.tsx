@@ -7,7 +7,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import MAPA from "@/components/Consulta/mapa";
 import PotencialTable from "@/components/Consulta/PotencialTable";
 import data from "./data.json";
-
+import Confrontante from "@/components/Consulta/Comfrontante";
 import Potencial from "@/components/Consulta/Potencial";
 
 export default function Home() {
@@ -30,7 +30,7 @@ export default function Home() {
 
               {/* <MAPA /> */}
               <div className="px-4 lg:px-6">
-                              <PotencialTable />
+                             <Confrontante /> <PotencialTable />
                 <ChartAreaInteractive />
               </div>
               <DataTable data={data} />
