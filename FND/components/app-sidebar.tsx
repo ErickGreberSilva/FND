@@ -35,9 +35,9 @@ import {
 
 const data = {
   user: {
-    name: "shadcn",
+    name: "Devlound",
     email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "/icon2.png",
   },
   navMain: [
     {
@@ -46,22 +46,22 @@ const data = {
       icon: IconDashboard,
     },
     {
-      title: "Lifecycle",
+      title: "WIP",
       url: "#",
       icon: IconListDetails,
     },
     {
-      title: "Analytics",
+      title: "WOP",
       url: "#",
       icon: IconChartBar,
     },
     {
-      title: "Projects",
+      title: "WARP",
       url: "#",
       icon: IconFolder,
     },
     {
-      title: "Team",
+      title: "HAARP",
       url: "#",
       icon: IconUsers,
     },

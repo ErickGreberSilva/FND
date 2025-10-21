@@ -58,7 +58,7 @@ export default function Potencial() {
   const [map, setMap] = useState<any>(null);
   const { ifiscal } = useLoteBusca();
   const [downloadReady, setDownloadReady] = useState(false);
-  const [lotesNaVisao, setLotesNaVisao] = useState<any>(null);
+  const [lotesNoEntorno, setLotesNoEntorno] = useState<any>(null);
   const [processing, setProcessing] = useState(false);
 
   useEffect(() => {
@@ -127,7 +127,6 @@ export default function Potencial() {
     initMap();
   }, []);
 
-  // 🔹 Busca os lotes na visão
   useEffect(() => {
     if (!ifiscal || !map || typeof window.L?.esri === "undefined") {
       setDownloadReady(false);
@@ -151,9 +150,13 @@ export default function Potencial() {
 
     highlightLayer.once("load", function (this: any) {
       this.query().where(`gtm_ind_fiscal = '${ifiscal}'`).bounds(async (err: any, bounds: any) => {
-        if (err || !bounds?.isValid()) return;
+        if (err || !bounds?.isValid()) {
+          setDownloadReady(false);
+          return;
+        }
 
         map.fitBounds(bounds, { maxZoom: 21 });
+
         const R = 6378137;
         const latLngToWebMercator = (latLng: any) => ({
           x: R * latLng.lng * (Math.PI / 180),
@@ -182,29 +185,24 @@ export default function Potencial() {
           const response = await fetch(queryUrl);
           const data = await response.json();
           const formatted = formatGeoJson(data);
-          setLotesNaVisao(formatted);
+          setLotesNoEntorno(formatted);
           setDownloadReady(true);
-          console.log("✅ Lotes formatados e prontos:", formatted);
         } catch (e) {
           console.error("Erro ao buscar lotes:", e);
+          setDownloadReady(false);
         }
       });
     });
   }, [ifiscal, map]);
 
-  // 🔹 Função de download do DWG
   const handleDownloadDWG = async () => {
-    if (!lotesNaVisao) {
-      alert("Nenhum dado disponível para exportar.");
-      return;
-    }
+    if (!lotesNoEntorno) return;
 
     setProcessing(true);
     try {
       // 1️⃣ Upload do JSON
-      const uploadUrl =
-        "https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/ExportToFile/GPServer/uploads/upload?";
-      const blob = new Blob([JSON.stringify(lotesNaVisao)], { type: "application/json" });
+      const uploadUrl = "https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/ExportToFile/GPServer/uploads/upload?";
+      const blob = new Blob([JSON.stringify(lotesNoEntorno)], { type: "application/json" });
       const formData = new FormData();
       formData.append("file", blob, "dados_formatados.json");
       formData.append("f", "json");
@@ -214,11 +212,8 @@ export default function Potencial() {
       const itemID = uploadResult?.item?.itemID;
       if (!itemID) throw new Error("Falha ao obter itemID.");
 
-      console.log("✅ Upload concluído:", itemID);
-
       // 2️⃣ Submissão do Job
-      const submitUrl =
-        "https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/ExportToFile/GPServer/ExportToFile/submitJob";
+      const submitUrl = "https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/ExportToFile/GPServer/ExportToFile/submitJob";
       const params = new URLSearchParams();
       params.append("input_json_file", JSON.stringify({ itemID }));
       params.append("Output_Type", "CAD");
@@ -235,7 +230,6 @@ export default function Potencial() {
       const submitResult = await submitResponse.json();
       const jobId = submitResult?.jobId;
       if (!jobId) throw new Error("Falha ao submeter job.");
-      console.log("🚀 Job submetido:", jobId);
 
       // 3️⃣ Esperar o processamento
       const statusUrl = `https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/ExportToFile/GPServer/ExportToFile/jobs/${jobId}?f=json`;
@@ -245,37 +239,30 @@ export default function Potencial() {
         const statusRes = await fetch(statusUrl);
         const statusData = await statusRes.json();
         status = statusData?.jobStatus;
-        console.log("⏳ Status do job:", status);
-        if (status === "esriJobFailed") throw new Error("Job falhou no servidor.");
+        if (status === "esriJobFailed") throw new Error("Job falhou.");
       }
 
-      // 4️⃣ Buscar resultado
+      // 4️⃣ Obter URL do resultado
       const resultUrl = `https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/ExportToFile/GPServer/ExportToFile/jobs/${jobId}/results/output_filename?f=json`;
       const resultRes = await fetch(resultUrl);
       const resultData = await resultRes.json();
       const downloadUrl = resultData?.value?.url;
 
       if (downloadUrl) {
-        console.log("📁 Link DWG:", downloadUrl);
-        alert(`✅ Arquivo DWG pronto!\n\n${downloadUrl}`);
         window.open(downloadUrl, "_blank");
       } else {
-        throw new Error("Link DWG não retornado.");
+        throw new Error("URL do DWG não retornada.");
       }
     } catch (err) {
-      console.error("❌ Erro durante o download DWG:", err);
-      alert("Erro ao gerar o DWG. Veja o console para detalhes.");
+      console.error("Erro ao gerar DWG:", err);
     } finally {
       setProcessing(false);
     }
   };
 
-  // 🔹 Download local do JSON
   const handleDownloadJSON = () => {
-    if (!lotesNaVisao) return;
-    const blob = new Blob([JSON.stringify(lotesNaVisao, null, 2)], {
-      type: "application/json",
-    });
+    if (!lotesNoEntorno) return;
+    const blob = new Blob([JSON.stringify(lotesNoEntorno, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -287,9 +274,9 @@ export default function Potencial() {
   return (
     <>
       <div ref={mapRef} className="w-full h-[700px] drop-shadow-lg rounded border" />
-      <div className="mt-4 flex justify-end gap-3">
-        <Button onClick={handleDownloadJSON} disabled={!downloadReady} variant="secondary">
-          Baixar JSON
+      <div className="mt-2 mr-7 flex justify-end gap-3">
+        <Button onClick={handleDownloadJSON} disabled={!downloadReady} variant="default">
+          Baixar Dados Entorno
         </Button>
         <Button onClick={handleDownloadDWG} disabled={!downloadReady || processing} variant="default">
           {processing ? "Gerando DWG..." : "Baixar DWG"}
