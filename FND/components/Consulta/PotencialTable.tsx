@@ -1,4 +1,3 @@
-// src/components/Consulta/ResultadoLote.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -16,10 +15,11 @@ import {
 import { Badge } from "@/components/ui/badge";
 
 interface DadosLote {
-  basico: Record<string, any>; // agora é um objeto para facilitar acesso direto
+  basico: Record<string, any>;
   calculo?: [string, any][];
   extra?: { title: string; data: [string, any][] }[];
 }
+
 function capitalizeWords(str: string | null | undefined): string {
   if (!str) return "—";
   return str
@@ -28,6 +28,32 @@ function capitalizeWords(str: string | null | undefined): string {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 }
+
+// 🔧 Função para obter CEP a partir da Indicação Fiscal
+async function obterCepPorIndicacaoFiscal(ifiscal: string): Promise<string> {
+  try {
+    const url15 = `https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_GeoCuritiba_MapaCadastral/MapServer/15/query?where=gtm_ind_fiscal='${ifiscal}'&outFields=gtm_cod_logradouro&f=json`;
+    const dados = await fetch(url15).then((r) => r.json());
+
+    if (!dados.features?.length) return "—";
+
+    const codLogradouro = dados.features[0].attributes?.gtm_cod_logradouro;
+    if (!codLogradouro) return "—";
+
+    const url11 = `https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_GeoCuritiba_MapaCadastral/MapServer/11/query?where=gtm_cod_logradouro='${codLogradouro}'&outFields=cep_e&f=json`;
+    const dadosCep = await fetch(url11).then((r) => r.json());
+
+    if (dadosCep.features?.length > 0) {
+      return dadosCep.features[0].attributes?.cep_e || "—";
+    }
+
+    return "—";
+  } catch (err) {
+    console.error("Erro ao obter CEP:", err);
+    return "—";
+  }
+}
+
 export default function ResultadoLote() {
   const { ifiscal } = useLoteBusca();
   const [dados, setDados] = useState<DadosLote | null>(null);
@@ -58,24 +84,23 @@ export default function ResultadoLote() {
 
         const attr = dadosLote.features[0].attributes;
 
+        // 🔹 Busca CEP de forma assíncrona
+        const cep = await obterCepPorIndicacaoFiscal(ifiscal);
+
         const basico = {
           "Indicação Fiscal": attr.gtm_ind_fiscal || "—",
           "Inscrição Imobiliária": attr.gtm_insc_imob || "—",
           Logradouro: capitalizeWords(attr.gtm_nm_logradouro),
           Número: attr.gtm_num_predial || "—",
           Bairro: capitalizeWords(attr.gtm_nm_bairro),
-          CEP: "—",
+          CEP: cep || "—",
         };
 
         let calculo: [string, any][] | undefined;
         const zona = attr.gtm_sigla_zoneamento?.trim();
         const area = parseFloat(attr.gtm_mtr_area_terreno) || 0;
 
-        if (
-          zona &&
-          zoneamentoData[zona as keyof typeof zoneamentoData] &&
-          area > 0
-        ) {
+        if (zona && zoneamentoData[zona as keyof typeof zoneamentoData] && area > 0) {
           const [
             coef,
             taxaOcup,
@@ -140,10 +165,9 @@ export default function ResultadoLote() {
   }, [ifiscal]);
 
   if (loading)
-    return (
-      <div className="p-4 text-sm text-muted-foreground">Carregando...</div>
-    );
-  if (error) return <div className="p-4 text-sm text-destructive">{error}</div>;
+    return <div className="p-4 text-sm text-muted-foreground">Carregando...</div>;
+  if (error)
+    return <div className="p-4 text-sm text-destructive">{error}</div>;
   if (!dados)
     return (
       <div className="p-4 text-sm text-muted-foreground">
@@ -154,7 +178,7 @@ export default function ResultadoLote() {
   return (
     <div className="space-y-6">
       <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
-        <div className="px-4 py-1 font-semibold border-b  rounded-lg text-lg bg-primary">
+        <div className="px-4 py-1 font-semibold border-b rounded-lg text-lg bg-primary">
           Dados Básicos
         </div>
         <div className="flex flex-row justify-around items-center content-center p-4 text-base">
@@ -162,7 +186,7 @@ export default function ResultadoLote() {
             {Object.entries(dados.basico).map(([campo, valor]) => (
               <div
                 key={campo}
-                className='class="flex justify-around items-center text-[15px]"'
+                className="flex justify-around items-center text-[15px]"
               >
                 <span className="font-medium text-muted-foreground">
                   {campo}:
@@ -193,7 +217,9 @@ function SeccaoTabela({
 }) {
   return (
     <>
-      <div className="px-4 py-3 font-semibold border-b text-lg text-primary ">{titulo}</div>
+      <div className="px-4 py-3 font-semibold border-b text-lg text-primary ">
+        {titulo}
+      </div>
       <div className="overflow-hidden rounded-lg border">
         <div className="relative w-full overflow-x-auto">
           <Table className="w-full caption-bottom text-sm">
