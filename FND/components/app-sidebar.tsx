@@ -18,7 +18,7 @@ import {
   IconSettings,
   IconUsers,
 } from "@tabler/icons-react"
-
+import Image from "next/image"
 import { NavDocuments } from "@/components/nav-documents"
 import { NavMain } from "@/components/nav-main"
 import { NavSecondary } from "@/components/nav-secondary"
@@ -161,8 +161,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
               <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Acme Inc.</span>
+       <Image  src="/logo.png"
+      alt="logo"
+      width={30}
+      height={30}
+      />
+                <span className="text-base font-semibold">P o t e n c i a l</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>

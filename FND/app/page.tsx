@@ -9,7 +9,8 @@ import PotencialTable from "@/components/Consulta/PotencialTable";
 import data from "./data.json";
 import Confrontante from "@/components/Consulta/Comfrontante";
 import Potencial from "@/components/Consulta/Potencial";
-
+import LoteSVG from "@/components/Consulta/LoteSVG";
+import LoteSVGComCotas from "@/components/Consulta/LoteCotas";
 export default function Home() {
   return (
     <SidebarProvider
@@ -30,7 +31,8 @@ export default function Home() {
 
               {/* <MAPA /> */}
               <div className="px-4 lg:px-6">
-                             <Confrontante /> <PotencialTable />
+                <PotencialTable />
+                <LoteSVGComCotas />
                 <ChartAreaInteractive />
               </div>
               <DataTable data={data} />
