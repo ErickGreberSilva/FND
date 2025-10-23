@@ -26,7 +26,7 @@ function loadScript(src: string): Promise<void> {
     document.head.appendChild(s);
   });
 }
-
+// =========================================================================== Formatacao GeoJson
 function formatGeoJson(rawData: any) {
   if (!rawData) return rawData;
 
@@ -52,7 +52,7 @@ function formatGeoJson(rawData: any) {
   }
   return data;
 }
-
+// =========================================================================== Principal
 export default function Potencial() {
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<any>(null);
@@ -61,7 +61,7 @@ export default function Potencial() {
   const [lotesNoEntorno, setLotesNoEntorno] = useState<any>(null);
   const [processing, setProcessing] = useState(false);
   const [loteSelecionado, setLoteSelecionado] = useState<any>(null);
-
+// =========================================================================== Inicia os mapas
   useEffect(() => {
     const initMap = async () => {
       try {
@@ -111,14 +111,14 @@ export default function Potencial() {
             })
             .addTo(m);
 
-          // --- camada visual base ---
+          // ===========================================================================  camada visual base
           const cadastralLayer = L.esri.dynamicMapLayer({
             url: "https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_GeoCuritiba_MapaCadastral/MapServer",
             layers: [23, 34],
             opacity: 0.4,
           }).addTo(m);
 
-          // --- camada interativa (lotes clicáveis) ---
+          // ===========================================================================  camada interativa
           const lotesLayer = L.esri.featureLayer({
             url: "https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_GeoCuritiba_MapaCadastral/MapServer/15",
             simplifyFactor: 0.5,
@@ -138,7 +138,7 @@ export default function Potencial() {
             }
           });
 
-          // clique no lote → painel lateral
+          // ===========================================================================  painel lateral
           lotesLayer.on("click", (e: any) => {
             const feature = e.layer.feature;
             const attrs = feature?.properties || feature?.attributes;
@@ -155,9 +155,12 @@ export default function Potencial() {
               ...attrs,
             });
           });
-
+          // ===========================================================================  Controle - Zoom
           L.control.zoom({ position: "topright" }).addTo(m);
           setMap(m);
+
+          // ===========================================================================  Controle - Layer
+          
           L.control
             .layers(null, { "Base Cartográfica": baseCartograficaLayer })
             .addTo(m);
@@ -168,7 +171,7 @@ export default function Potencial() {
     };
     initMap();
   }, []);
-
+  // ===========================================================================  Downloads
   useEffect(() => {
     if (!ifiscal || !map || typeof window.L?.esri === "undefined") {
       setDownloadReady(false);
@@ -240,7 +243,7 @@ export default function Potencial() {
         });
     });
   }, [ifiscal, map]);
-
+  // ===========================================================================  Download DWG
   const handleDownloadDWG = async () => {
     if (!lotesNoEntorno) return;
     setProcessing(true);
@@ -302,7 +305,7 @@ export default function Potencial() {
       setProcessing(false);
     }
   };
-
+  // =========================================================================== REF de Nivel
   const [processingRN, setProcessingRN] = useState(false);
   const handleDownloadRN = async () => {
     if (!ifiscal) {
@@ -345,7 +348,7 @@ export default function Potencial() {
       setProcessingRN(false);
     }
   };
-
+  // ===========================================================================  Dados Json Base
   const handleDownloadJSON = () => {
     if (!lotesNoEntorno) return;
     const blob = new Blob([JSON.stringify(lotesNoEntorno, null, 2)], {

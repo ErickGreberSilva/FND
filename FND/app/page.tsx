@@ -1,15 +1,12 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import { ChartAreaInteractive } from "@/components/chart-area-interactive";
 import { DataTable } from "@/components/data-table";
-// import { SectionCards } from "@/components/section-cards";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import MAPA from "@/components/Consulta/mapa";
 import PotencialTable from "@/components/Consulta/PotencialTable";
 import data from "./data.json";
-import Confrontante from "@/components/Consulta/Comfrontante";
 import Potencial from "@/components/Consulta/Potencial";
-import LoteSVG from "@/components/Consulta/LoteSVG";
+import QuadroZoneamento from "@/components/Consulta/QuadroZoneamento";
 import LoteSVGComCotas from "@/components/Consulta/LoteCotas";
 export default function Home() {
   return (
@@ -32,6 +29,7 @@ export default function Home() {
               {/* <MAPA /> */}
               <div className="px-4 lg:px-6">
                 <PotencialTable />
+                <QuadroZoneamento />
                 <LoteSVGComCotas />
                 <ChartAreaInteractive />
               </div>

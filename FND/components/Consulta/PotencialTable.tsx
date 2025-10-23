@@ -13,7 +13,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-
+import QuadroZoneamento from "@/components/Consulta/QuadroZoneamento";
 interface DadosLote {
   basico: Record<string, any>;
   calculo?: [string, any][];
@@ -207,7 +207,6 @@ export default function ResultadoLote() {
     </div>
   );
 }
-
 function SeccaoTabela({
   titulo,
   dados,

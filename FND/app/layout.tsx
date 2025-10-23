@@ -4,7 +4,7 @@ import './globals.css';
 import { SidebarProvider } from '@/context/SidebarContext';
 import { ThemeProvider } from '@/components/Theme-provider'
 import { LoteBuscaProvider } from "@/context/LoteBuscaContext";
-
+import { LoteProvider } from '@/context/LoteContext';
 const outfit = Outfit({
   subsets: ["latin"],
 });
@@ -24,7 +24,9 @@ export default function RootLayout({
             disableTransitionOnChange
           >
         <LoteBuscaProvider>
-          <SidebarProvider>{children}</SidebarProvider>
+          <LoteProvider>
+            <SidebarProvider>{children}</SidebarProvider>
+          </LoteProvider>
         </LoteBuscaProvider>
         </ThemeProvider>
       </body>
