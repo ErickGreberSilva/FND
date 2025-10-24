@@ -367,20 +367,20 @@ export default function Potencial() {
       <div className="relative">
         {/* Painel lateral */}
         {loteSelecionado && (
-          <div className="painel absolute top-0 left-0 z-999 w-80 h-full bg-[#016a49de] shadow-lg border border-gray-300 p-4 overflow-y-auto max-h-[90vh] text-sm">
+          <div className="absolute top-0 left-0 z-999 w-80 h-full bg-sidebar  border border-gray-300 p-4 overflow-y-auto max-h-[90vh] text-sm">
             <div className="flex justify-between items-center mb-3">
-              <h2 className="text-base font-semibold text-emerald-100">
+              <h2 className=" font-mono text-base">
                 Informações do Lote
               </h2>
               <button
                 onClick={() => setLoteSelecionado(null)}
-                className="text-emerald-100 hover:text-red-500"
+                className="text-base hover:text-red-500"
               >
                 ✕
               </button>
             </div>
-            <div className="space-y-1 text-emerald-100">
-              <p><b>Indicação Fiscal:</b> {loteSelecionado.gtm_ind_fiscal || "—"}</p>
+            <div className="space-y-1 text-base font-sans">
+              <p><b className="font-sans">Indicação Fiscal:</b> {loteSelecionado.gtm_ind_fiscal || "—"}</p>
               <p><b>Coordenada X:</b> {loteSelecionado.coordenadas.x}</p>
               <p><b>Coordenada Y:</b> {loteSelecionado.coordenadas.y}</p>
               <p><b>Geometria Aproximada:</b> Polígono</p>
@@ -402,7 +402,7 @@ export default function Potencial() {
 
         <div
           ref={mapRef}
-          className="w-full h-[700px] drop-shadow-lg rounded border"
+          className="w-full h-[700px]  rounded border"
         />
       </div>
 

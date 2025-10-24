@@ -9,6 +9,7 @@ import Potencial from "@/components/Consulta/Potencial";
 import QuadroZoneamento from "@/components/Consulta/QuadroZoneamento";
 import LoteSVGComCotas from "@/components/Consulta/LoteCotas";
 import LoteValores from "@/components/Consulta/LoteValores";
+
 export default function Home() {
   return (
     <SidebarProvider
