@@ -61,7 +61,7 @@ export default function Potencial() {
   const [lotesNoEntorno, setLotesNoEntorno] = useState<any>(null);
   const [processing, setProcessing] = useState(false);
   const [loteSelecionado, setLoteSelecionado] = useState<any>(null);
-// =========================================================================== Inicia os mapas
+  // =========================================================================== Inicia os mapas
   useEffect(() => {
     const initMap = async () => {
       try {
@@ -160,7 +160,7 @@ export default function Potencial() {
           setMap(m);
 
           // ===========================================================================  Controle - Layer
-          
+
           L.control
             .layers(null, { "Base Cartográfica": baseCartograficaLayer })
             .addTo(m);
@@ -394,8 +394,8 @@ export default function Potencial() {
               <p><b>Área Terreno (m²):</b> {loteSelecionado.gtm_mtr_area_terreno || "—"}</p>
               <p><b>Bairro:</b> {loteSelecionado.gtm_nm_bairro || "—"}</p>
               <p><b>Zoneamento:</b> {loteSelecionado.gtm_sigla_zoneamento || "—"}</p>
-              <p><b>Área (m²):</b> {loteSelecionado.gtm_mtr_area_terreno|| "—"}</p>
-              <p><b>Referência de Nível:</b> {loteSelecionado.gtm_mtr_rn|| "—"}</p>
+              <p><b>Área (m²):</b> {loteSelecionado.gtm_mtr_area_terreno || "—"}</p>
+              <p><b>Referência de Nível:</b> {loteSelecionado.gtm_mtr_rn || "—"}</p>
             </div>
           </div>
         )}

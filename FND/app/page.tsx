@@ -8,6 +8,7 @@ import data from "./data.json";
 import Potencial from "@/components/Consulta/Potencial";
 import QuadroZoneamento from "@/components/Consulta/QuadroZoneamento";
 import LoteSVGComCotas from "@/components/Consulta/LoteCotas";
+import LoteValores from "@/components/Consulta/LoteValores";
 export default function Home() {
   return (
     <SidebarProvider
@@ -31,6 +32,7 @@ export default function Home() {
                 <PotencialTable />
                 <QuadroZoneamento />
                 <LoteSVGComCotas />
+                <LoteValores />
                 <ChartAreaInteractive />
               </div>
               <DataTable data={data} />
