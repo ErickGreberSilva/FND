@@ -9,7 +9,7 @@ import Potencial from "@/components/Consulta/Potencial";
 import QuadroZoneamento from "@/components/Consulta/QuadroZoneamento";
 import LoteSVGComCotas from "@/components/Consulta/LoteCotas";
 import LoteValores from "@/components/Consulta/LoteValores";
-
+import LoteExtrudeMap from "@/components/Consulta/LoteExtrudeMap";
 export default function Home() {
   return (
     <SidebarProvider
@@ -30,6 +30,7 @@ export default function Home() {
 
               {/* <MAPA /> */}
               <div className="px-4 lg:px-6">
+                <LoteExtrudeMap />
                 <PotencialTable />
                 <QuadroZoneamento />
                 <LoteSVGComCotas />

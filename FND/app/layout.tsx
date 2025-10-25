@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${lato.variable} ${poppins.variable}`}>
+    <html lang="en">
       <body className={`${outfit.className} dark:bg-gray-900`}>
            <ThemeProvider
             attribute="class"
