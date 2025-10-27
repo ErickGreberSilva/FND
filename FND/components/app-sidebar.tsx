@@ -175,7 +175,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={data.navMain} />
         <NavDocuments items={data.documents} />
+         <Image src="/z-icons/Building-a.png"
+      alt="logo"
+      width={130}
+      height={130}
+      />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
+       
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
