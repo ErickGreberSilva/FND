@@ -82,7 +82,7 @@ export default function SunpathCuritiba() {
   const [rotationDeg, setRotationDeg] = useState(0); // rotação do plano/compasso (edifício continua alinhado)
   const [scale, setScale] = useState(6); // px por metro
 
-  // Novos estados: dimensões + controle de hora por slider (5 em 5 min)
+  // Dimensões + controle de hora por slider (5 em 5 min)
   const [width, setWidth] = useState(20);    // Largura (m)
   const [depth, setDepth] = useState(14);    // Comprimento (m)
   const [height, setHeight] = useState(12);  // Altura (m)
@@ -90,6 +90,10 @@ export default function SunpathCuritiba() {
 
   // Info HUD inferior (azimute/altitude)
   const [azAlt, setAzAlt] = useState({ azimuthDeg: 0, altitudeDeg: 0 });
+
+  // ADIÇÕES: toggles sem alterar estética existente
+  const [showGrid, setShowGrid] = useState(true);
+  const [showCompass, setShowCompass] = useState(true);
 
   /** ========= Animação anual (mantido) ========= */
   useEffect(() => {
@@ -111,7 +115,7 @@ export default function SunpathCuritiba() {
       if (t > 1) t = 0;
       const current = new Date(startYear.getTime() + t * totalMs);
 
-      // Mantemos o horário atual do slider ao animar a data
+      // Mantém o horário atual do slider ao animar a data
       current.setHours(Math.floor(timeMinutes / 60), timeMinutes % 60, 0, 0);
 
       setDate(current);
@@ -139,20 +143,33 @@ export default function SunpathCuritiba() {
     const CX = W / 2;
     const CY = H / 2;
 
-    // Limpa e fundo
+    // Limpa
     ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = "#dfdfdf";
-    ctx.fillRect(0, 0, W, H);
 
-    // Grade leve (como no original)
-    const grid = 10 * scale;
-    ctx.strokeStyle = "rgba(0,0,0,0.2)";
-    ctx.lineWidth = 1;
-    for (let x = CX % grid; x < W; x += grid) {
-      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
-    }
-    for (let y = CY % grid; y < H; y += grid) {
-      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    // Fundo/grade só se habilitado. Se desligado → canvas permanece transparente.
+    if (showGrid) {
+      ctx.fillStyle = "#dfdfdf";
+      ctx.fillRect(0, 0, W, H);
+
+      // Grade leve (como no original)
+      const grid = 10 * scale;
+      const gridm = 5 * scale;
+      ctx.strokeStyle = "rgba(0,0,0,0.2)";
+      ctx.lineWidth = 0.5;
+      for (let x = CX % grid; x < W; x += grid) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+      }
+     
+      for (let y = CY % grid; y < H; y += grid) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+      }
+      ctx.lineWidth = 0.3;
+      for (let x = CX % grid; x < W; x += gridm) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+      }
+  for (let y = CY % grid; y < H; y += gridm) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+      }
     }
 
     // Data/hora atual aplicando o slider (5 em 5 min)
@@ -162,42 +179,44 @@ export default function SunpathCuritiba() {
     const { azimuthDeg, altitudeDeg } = solarPosition(current, LAT, LON);
     setAzAlt({ azimuthDeg, altitudeDeg });
 
-    // Bússola (gira com o "plano")
-    const compassR = 150;
+    // Bússola (gira com o "plano") — desenhar somente se habilitada
+    const compassR = 180;
     const rot = deg2rad(rotationDeg);
-    ctx.beginPath();
-    ctx.arc(CX, CY, compassR, 0, Math.PI * 2);
-    ctx.strokeStyle = "rgba(255, 117, 74 ,0.6)";
-    ctx.lineWidth = 5;
-    ctx.stroke();
-
-    const marks = [
-      { label: "N", angDeg: 0 },
-      { label: "E", angDeg: 90 },
-      { label: "S", angDeg: 180 },
-      { label: "W", angDeg: 270 },
-    ];
-    ctx.fillStyle = "#000";
-    ctx.font = "bold 12px system-ui, sans-serif";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    marks.forEach((m) => {
-      const a = deg2rad(m.angDeg) + rot; // gira com o plano
-      const x = CX + Math.sin(a) * (compassR + 14);
-      const y = CY - Math.cos(a) * (compassR + 14);
-      ctx.fillText(m.label, x, y);
-
-      // tracinho
-      const x1 = CX + Math.sin(a) * compassR;
-      const y1 = CY - Math.cos(a) * compassR;
-      const x2 = CX + Math.sin(a) * (compassR - 8);
-      const y2 = CY - Math.cos(a) * (compassR - 8);
+    if (showCompass) {
       ctx.beginPath();
-      ctx.moveTo(x1, y1);
-      ctx.lineTo(x2, y2);
-      ctx.strokeStyle = "rgba(255,255,255,0.4)";
+      ctx.arc(CX, CY, compassR, 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(255, 117, 74 ,0.6)";
+      ctx.lineWidth = 5;
+      ctx.setLineDash([5, 3]);
       ctx.stroke();
-    });
+
+      const marks = [
+        { label: "N", angDeg: 0 },
+        { label: "45", angDeg: 45 },
+        { label: "L", angDeg: 90 },
+        { label: "135", angDeg: 135 },
+        { label: "S", angDeg: 180 },
+        { label: "225", angDeg: 225 },
+        { label: "O", angDeg: 270 },
+        { label: "315", angDeg: 315 },
+      ];
+      ctx.fillStyle = "#000";
+      ctx.font = "bold 12px system-ui, sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      marks.forEach((m) => {
+        const a = deg2rad(m.angDeg) + rot; // gira com o plano
+        const x = CX + Math.sin(a) * (compassR + 14);
+        const y = CY - Math.cos(a) * (compassR + 14);
+        ctx.fillText(m.label, x, y);
+        // tracinho
+        const x1 = CX + Math.sin(a) * compassR;
+        const y1 = CY - Math.cos(a) * compassR;
+        const x2 = CX + Math.sin(a) * (compassR - 20);
+        const y2 = CY - Math.cos(a) * (compassR - 20);
+        ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth=1; ctx.stroke();
+      });
+    }
 
     // Edifício (retângulo alinhado ao eixo, como no seu modelo)
     const halfW = width / 2;
@@ -212,33 +231,32 @@ export default function SunpathCuritiba() {
     // Vetor solar horizontal no plano do solo (N=0° → y+, sentido horário)
     const az = deg2rad(azimuthDeg);
     const alt = deg2rad(altitudeDeg);
-    const sx = Math.sin(az); // leste +
-    const sy = Math.cos(az); // norte +
+    const sx = Math.sin(az); 
+    const sy = Math.cos(az);
     // Aplica rotação do plano/câmera (giramos tudo no chão)
     const rx = sx * Math.cos(rot) + sy * Math.sin(rot);
     const ry = -sx * Math.sin(rot) + sy * Math.cos(rot);
 
     const aboveHorizon = altitudeDeg > 0.5;
 
-    // Sombra = casco convexo (base + base deslocada pelo topo projetado)
     let shadowPoly: Vec2[] = [];
     if (aboveHorizon) {
       const tanAlt = Math.tan(alt);
-      const Lp = height / tanAlt; // comprimento da projeção
-      const offset = { x: -rx * Lp, y: -ry * Lp }; // oposta ao sol
+      const Lp = height / tanAlt; 
+      const offset = { x: -rx * Lp, y: -ry * Lp }; 
       const topProjected = base.map((b) => ({ x: b.x + offset.x, y: b.y + offset.y }));
       shadowPoly = convexHull(base.concat(topProjected));
     }
 
-    // Mundo → tela
     const toScreen = (p: Vec2): Vec2 => ({
       x: CX + p.x * scale,
-      y: CY - p.y * scale, // y para cima no plano
+      y: CY - p.y * scale,
     });
 
     // Desenha sombra
     if (aboveHorizon && shadowPoly.length >= 3) {
       const sp = shadowPoly.map(toScreen);
+      ctx.setLineDash([]);
       ctx.beginPath();
       ctx.moveTo(sp[0].x, sp[0].y);
       for (let i = 1; i < sp.length; i++) ctx.lineTo(sp[i].x, sp[i].y);
@@ -250,7 +268,7 @@ export default function SunpathCuritiba() {
       ctx.stroke();
     }
 
-    // Desenha base do prédio (cheio, não wireframe) — mesmas cores do seu modelo
+    // Desenha base do prédio (cheio, não wireframe) — mesmas cores do seu modelo //
     const bp = base.map(toScreen);
     ctx.beginPath();
     ctx.moveTo(bp[0].x, bp[0].y);
@@ -259,15 +277,15 @@ export default function SunpathCuritiba() {
     ctx.fillStyle = "#ffce76";
     ctx.fill();
     ctx.strokeStyle = "#0a516d";
-    ctx.lineWidth = 1.5;
+    ctx.lineWidth = 0.01;
     ctx.stroke();
 
-    // Indicador do sol no aro da bússola
-    const sunR = compassR + 32;
-    const sxp = CX + Math.sin(az + rot) * sunR;
-    const syp = CY - Math.cos(az + rot) * sunR;
+    // Indicador do sol no aro da bússola (respeita rotação do plano)
+    const sunR = 150 + 32;
+    const sxp = CX + Math.sin(az + deg2rad(rotationDeg)) * sunR;
+    const syp = CY - Math.cos(az + deg2rad(rotationDeg)) * sunR;
     ctx.beginPath();
-    ctx.arc(sxp, syp, 6, 0, Math.PI * 2);
+    ctx.arc(sxp, syp, 10, 0, Math.PI * 2);
     ctx.fillStyle = aboveHorizon ? "#ff754a" : "rgba(255,255,255,0.3)";
     ctx.fill();
     ctx.strokeStyle = "rgba(255,255,255,0.7)";
@@ -284,7 +302,7 @@ export default function SunpathCuritiba() {
       .replace("T", " ");
     ctx.fillText(`${localISO}`, 12, 12);
     ctx.fillText(`Az: ${azimuthDeg.toFixed(1)}°  Alt: ${altitudeDeg.toFixed(1)}°`, 12, 30);
-  }, [date, timeMinutes, rotationDeg, width, depth, height, scale]);
+  }, [date, timeMinutes, rotationDeg, width, depth, height, scale, showGrid, showCompass]);
 
   /** ========= Handlers ========= */
 
@@ -298,7 +316,6 @@ export default function SunpathCuritiba() {
   const handleDateTimeLocal = (e: React.ChangeEvent<HTMLInputElement>) => {
     const d = new Date(e.target.value);
     if (isNaN(d.getTime())) return;
-    // aplica hora/min do slider
     d.setHours(Math.floor(timeMinutes / 60), timeMinutes % 60, 0, 0);
     setDate(d);
   };
@@ -322,15 +339,18 @@ export default function SunpathCuritiba() {
   const hourStr = String(Math.floor(timeMinutes / 60)).padStart(2, "0");
   const minStr = String(timeMinutes % 60).padStart(2, "0");
 
+  // Classe do wrapper: mantém estética original; quando fundo/grade off, não força preto
+  const wrapperClass =
+    "relative w-full h-[520px] rounded-md border overflow-hidden " +
+    (showGrid ? "bg-black" : "");
+
   return (
     <div className="w-full">
-      <div className="relative w-full h-[520px] rounded-md border overflow-hidden bg-black">
-        <canvas ref={canvasRef} className="w-full h-full block" />
+      <div className={wrapperClass}>
+        <canvas ref={canvasRef} className="w-full h-full block bg-transparent" />
+      
+        <div className="absolute top-3 left-3 bg-sidebar-accent backdrop-primary-md p-3 rounded-md shadow-md z-5 space-y-3">
 
-        {/* Painel de controle — CLASSES MANTIDAS */}
-        <div className="absolute top-3 left-3 bg-sidebar-accent backdrop-primary-md p-3 rounded-md shadow-md z-[5] space-y-3">
-
-          {/* Linha de botões (mantidos) */}
           <div className="flex items-center gap-2">
             <button
               onClick={() => setPlaying((p) => !p)}
@@ -361,7 +381,6 @@ export default function SunpathCuritiba() {
             </button>
           </div>
 
-          {/* Rotação — slider (mantido) + input numérico (ADICIONADO) */}
           <div className="flex items-center gap-2">
             <label className="text-sm">Rotação</label>
             <input
@@ -371,7 +390,6 @@ export default function SunpathCuritiba() {
               value={rotationDeg}
               onChange={(e) => setRotationDeg(parseInt(e.target.value, 10))}
             />
-            {/* Entrada numérica adicional sem alterar a estética geral */}
             <input
               type="number"
               className="border rounded px-2 py-1 text-sm bg-card w-15"
@@ -383,7 +401,6 @@ export default function SunpathCuritiba() {
             />
           </div>
 
-          {/* Escala (mantido) */}
           <div className="flex items-center gap-2">
             <label className="text-sm">Escala</label>
             <input
@@ -396,7 +413,6 @@ export default function SunpathCuritiba() {
             <span className="text-sm w-10 text-right">{scale}x</span>
           </div>
 
-          {/* Data/hora (mantido) + Slider de horário 5 em 5 minutos (ADICIONADO) */}
           <div className="flex items-center gap-2">
             <input
               type="datetime-local"
@@ -405,6 +421,7 @@ export default function SunpathCuritiba() {
               className="border rounded px-2 py-1 text-sm bg-card"
             />
           </div>
+
           <div className="flex items-center gap-2">
             <label className="text-sm">Hora</label>
             <input
@@ -421,7 +438,6 @@ export default function SunpathCuritiba() {
             </span>
           </div>
 
-          {/* Dimensões do edifício (ADICIONADO) */}
           <div className="flex flex-wrap items-center gap-2">
             <label className="text-sm">L(m)</label>
             <input
@@ -445,16 +461,38 @@ export default function SunpathCuritiba() {
               onChange={(e) => setHeight(Math.max(0, Number(e.target.value)))}
             />
           </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setShowGrid((v) => !v)}
+              className={`px-3 py-1 rounded text-sm font-medium ${
+                showGrid
+                  ? "bg-primary text-white"
+                  : "bg-card hover:bg-primary text-foreground hover:text-white"
+              }`}
+            >
+              {showGrid ? "Ocultar Fundo/Grid" : "Mostrar Fundo/Grid"}
+            </button>
+            <button
+              onClick={() => setShowCompass((v) => !v)}
+              className={`px-3 py-1 rounded text-sm font-medium ${
+                showCompass
+                  ? "bg-primary text-white"
+                  : "bg-card hover:bg-primary text-foreground hover:text-white"
+              }`}
+            >
+              {showCompass ? "Ocultar Compasso" : "Mostrar Compasso"}
+            </button>
+          </div>
         </div>
 
-        {/* Informações (azimute/altitude) — canto inferior esquerdo (ADICIONADO) */}
         <div className="absolute bottom-3 left-3 bg-black/50 text-white px-3 py-2 rounded-md text-xs">
           🌞 Az: {azAlt.azimuthDeg.toFixed(1)}° | ⛰️ Alt: {azAlt.altitudeDeg.toFixed(1)}°
         </div>
       </div>
 
       <p className="mt-2 text-xs opacity-80">
-        Curitiba: lat {-25.4284.toFixed(4)}°, lon {-49.2733.toFixed(4)}°. Visual 2D esquemático — rápido como o do site.
+        Curitiba: lat {LAT.toFixed(4)}°, lon {LON.toFixed(4)}°. Visual 2D esquemático — Referência de exposição solar.
       </p>
     </div>
   );

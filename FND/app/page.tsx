@@ -39,9 +39,7 @@ export default function Home() {
                 <QuadroZoneamento />
                 <LoteSVGComCotas />
                 <LoteValores />
-                <ChartAreaInteractive />
               </div>
-              <DataTable data={data} />
             </div>
           </div>
         </div>
