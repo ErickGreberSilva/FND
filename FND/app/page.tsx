@@ -9,8 +9,9 @@ import Potencial from "@/components/Consulta/Potencial";
 import QuadroZoneamento from "@/components/Consulta/QuadroZoneamento";
 import LoteSVGComCotas from "@/components/Consulta/LoteCotas";
 import LoteValores from "@/components/Consulta/LoteValores";
-import LoteExtrudeMap from "@/components/Consulta/LoteExtrudeMap";
-import ProtomapsAPIMap from "@/components/Consulta/Prtomps";
+// import LoteExtrudeMap from "@/components/Consulta/LoteExtrudeMap";
+// import ProtomapsAPIMap from "@/components/Consulta/Prtomps";
+import SunPathCuritiba from "@/components/Consulta/sunpath";
 export default function Home() {
   return (
     <SidebarProvider
@@ -31,8 +32,9 @@ export default function Home() {
 
               {/* <MAPA /> */}
               <div className="px-4 lg:px-6">
-               <LoteExtrudeMap />
-                <ProtomapsAPIMap />
+               {/* <LoteExtrudeMap /> */}
+               <SunPathCuritiba />
+                {/* <ProtomapsAPIMap /> */}
                 <PotencialTable />
                 <QuadroZoneamento />
                 <LoteSVGComCotas />
