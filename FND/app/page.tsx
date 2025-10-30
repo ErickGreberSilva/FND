@@ -31,7 +31,7 @@ export default function Home() {
 
               {/* <MAPA /> */}
               <div className="px-4 lg:px-6">
-               
+               <LoteExtrudeMap />
                 <ProtomapsAPIMap />
                 <PotencialTable />
                 <QuadroZoneamento />
