@@ -1,6 +1,8 @@
 import { Outfit } from 'next/font/google';
 import './globals.css';
 
+
+
 import { SidebarProvider } from '@/context/SidebarContext';
 import { ThemeProvider } from '@/components/Theme-provider'
 import { LoteBuscaProvider } from "@/context/LoteBuscaContext";

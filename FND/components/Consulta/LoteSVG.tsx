@@ -27,7 +27,7 @@ function toSvgPathFromRings(
     const height = options?.height ?? 512;
     const padding = options?.padding ?? 16;
 
-    // 1) Coletar bbox (minX, maxX, minY, maxY) no sistema 4326 (lon, lat)
+    // ========================================================================== BBox
     let minX = Infinity,
         maxX = -Infinity,
         minY = Infinity,

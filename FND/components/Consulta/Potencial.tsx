@@ -1,5 +1,5 @@
 "use client";
-
+import * as turf from "@turf/turf";
 import { useEffect, useRef, useState } from "react";
 import "leaflet/dist/leaflet.css";
 import { utmToLatLon } from "@/hooks/utmToLatLon";
@@ -9,6 +9,84 @@ import { Button } from "../ui/button";
 declare global {
   interface Window {
     L: any;
+  }
+}
+
+
+// =========================================================================== Turf.js — Clip por extensão do mapa (corrigido e seguro)
+async function clipLotesToMapExtent(data: any, map: any) {
+  try {
+    if (!data?.features || !map) return data;
+
+    // Converter features do Esri para GeoJSON padrão
+    const geojson = {
+      type: "FeatureCollection",
+      features: data.features
+        .map((f: any) => {
+          if (!f.geometry?.rings?.length) return null;
+          return {
+            type: "Feature",
+            geometry: {
+              type: "Polygon",
+              coordinates: f.geometry.rings,
+            },
+            properties: f.attributes || {},
+          };
+        })
+        .filter(Boolean),
+    };
+
+    // Obter bbox da extensão atual do mapa (lat/lng)
+    const mapBounds = map.getBounds();
+    const sw = mapBounds.getSouthWest();
+    const ne = mapBounds.getNorthEast();
+
+    // Converter para Web Mercator (EPSG:3857)
+    const R = 6378137.0;
+    const lon2x = (lon: number) => (lon * Math.PI * R) / 180;
+    const lat2y = (lat: number) =>
+      R * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
+
+    const minX = lon2x(sw.lng);
+    const minY = lat2y(sw.lat);
+    const maxX = lon2x(ne.lng);
+    const maxY = lat2y(ne.lat);
+
+    const bbox: [number, number, number, number] = [minX, minY, maxX, maxY];
+    const bboxPoly = turf.bboxPolygon(bbox);
+
+    // Clip com segurança
+    const clippedFeatures = geojson.features
+      .filter((feature: any) => {
+        try {
+          return turf.booleanIntersects(feature, bboxPoly);
+        } catch {
+          return false;
+        }
+      })
+      .map((feature: any) => {
+        try {
+          const clipped = turf.intersect(feature, bboxPoly);
+          return clipped || feature;
+        } catch {
+          return feature;
+        }
+      })
+      .filter(Boolean);
+
+    const clippedGeojson = {
+      type: "FeatureCollection",
+      features: clippedFeatures,
+    };
+
+    console.log(
+      `✅ Clip concluído — ${clippedGeojson.features.length} geometrias dentro da extensão`
+    );
+
+    return clippedGeojson;
+  } catch (err) {
+    console.error("❌ Erro no processo de clip via Turf:", err);
+    return data;
   }
 }
 
@@ -59,6 +137,8 @@ export default function Potencial() {
   const { ifiscal } = useLoteBusca();
   const [downloadReady, setDownloadReady] = useState(false);
   const [lotesNoEntorno, setLotesNoEntorno] = useState<any>(null);
+  const [lotesClipados, setLotesClipados] = useState<any>(null);
+
   const [processing, setProcessing] = useState(false);
   const [loteSelecionado, setLoteSelecionado] = useState<any>(null);
   // =========================================================================== Inicia os mapas
@@ -236,10 +316,44 @@ export default function Potencial() {
             const formatted = formatGeoJson(data);
             setLotesNoEntorno(formatted);
             setDownloadReady(true);
+            // =========================================================================== Novo: gerar GeoJSON clipado com Turf
+            try {
+              const clippedGeojson = await clipLotesToMapExtent(formatted, map);
+              setLotesClipados(clippedGeojson);
+              console.log("🌐 GeoJSON clipado salvo:", clippedGeojson);
+              try {
+                // Remove camada clipada anterior, se existir
+                if ((map as any)._clipLayer) {
+                  map.removeLayer((map as any)._clipLayer);
+                }
+
+                // Adiciona nova camada clipada (estilo discreto, destacando o recorte)
+                const clipLayer = (window as any).L.geoJSON(clippedGeojson, {
+                  style: {
+                    color: "#000",
+                    weight: 2,
+                    opacity: 0.8,
+                    fillColor: "#ffffff",
+                    fillOpacity: 1,
+                  },
+                }).addTo(map);
+
+                // Guarda a referência da camada no objeto do mapa para remoção futura
+                (map as any)._clipLayer = clipLayer;
+
+                console.log("🗺️ Camada clipada adicionada ao mapa com sucesso.");
+              } catch (layerErr) {
+                console.error("⚠️ Erro ao adicionar camada clipada:", layerErr);
+              }
+            } catch (clipErr) {
+              console.error("Erro ao gerar clip Turf:", clipErr);
+            }
           } catch (e) {
             console.error("Erro ao buscar lotes:", e);
             setDownloadReady(false);
+
           }
+
         });
     });
   }, [ifiscal, map]);
@@ -427,6 +541,24 @@ export default function Potencial() {
           variant="default"
         >
           {processing ? "Gerando DWG..." : "Baixar DWG"}
+        </Button>
+        <Button
+          onClick={() => {
+            if (!lotesClipados) return;
+            const blob = new Blob([JSON.stringify(lotesClipados, null, 2)], {
+              type: "application/json",
+            });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "lotes_clipados.json";
+            a.click();
+            URL.revokeObjectURL(url);
+          }}
+          disabled={!lotesClipados}
+          variant="outline"
+        >
+          Baixar GeoJSON Clipado
         </Button>
       </div>
     </>
