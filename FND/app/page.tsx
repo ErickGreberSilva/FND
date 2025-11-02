@@ -7,10 +7,10 @@ import QuadroZoneamento from "@/components/Consulta/QuadroZoneamento";
 import LoteSVGComCotas from "@/components/Consulta/LoteCotas";
 import LoteValores from "@/components/Consulta/LoteValores";
 // import LoteExtrudeMap from "@/components/Consulta/LoteExtrudeMap";
-// import ProtomapsAPIMap from "@/components/Consulta/Prtomps";
-import SunPathCuritiba from "@/components/Consulta/sunpath";
-import SunPathStereographic from "@/components/SunDiargram";
-import Pagee from "@/components/Sunpaths/sunpath3";
+import ProtomapsAPIMap from "@/components/Consulta/Prtomps";
+import SunPathCuritiba from "@/components/sunpaths/Sunpath-2D";
+import Diagram2D from "@/components/sunpaths/Sunpath-Diagram";
+import SunSimulator from "@/components/sunpaths/SunSimulator";
 
 export default function Home() {
   return (
@@ -28,11 +28,10 @@ export default function Home() {
             <div className="flex flex-col gap-4 pt-0 md:gap-6 md:py-6 md:pt-0">
               <Potencial />
               <div className="px-4 lg:px-6">
+                 <ProtomapsAPIMap />
                 {/* <LoteExtrudeMap /> */}
                 <SunPathCuritiba /> {/* SVG by Elyson */}
-                <SunPathStereographic />
-                <Pagee />
-                {/* <ProtomapsAPIMap /> */}
+                <Diagram2D />
                 <PotencialTable />
                 <QuadroZoneamento />
                 <LoteSVGComCotas />

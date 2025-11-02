@@ -124,7 +124,6 @@ export default function SunpathCuritiba() {
 
     if (playing) raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playing]);
 
   /** ========= Desenho ========= */
@@ -159,7 +158,7 @@ export default function SunpathCuritiba() {
       for (let x = CX % grid; x < W; x += grid) {
         ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
       }
-     
+
       for (let y = CY % grid; y < H; y += grid) {
         ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
       }
@@ -167,7 +166,7 @@ export default function SunpathCuritiba() {
       for (let x = CX % grid; x < W; x += gridm) {
         ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
       }
-  for (let y = CY % grid; y < H; y += gridm) {
+      for (let y = CY % grid; y < H; y += gridm) {
         ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
       }
     }
@@ -214,7 +213,7 @@ export default function SunpathCuritiba() {
         const y1 = CY - Math.cos(a) * compassR;
         const x2 = CX + Math.sin(a) * (compassR - 20);
         const y2 = CY - Math.cos(a) * (compassR - 20);
-        ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth=1; ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.strokeStyle = "rgba(0,0,0,1)"; ctx.lineWidth = 1; ctx.stroke();
       });
     }
 
@@ -223,15 +222,15 @@ export default function SunpathCuritiba() {
     const halfD = depth / 2;
     const base: Vec2[] = [
       { x: -halfW, y: -halfD },
-      { x:  halfW, y: -halfD },
-      { x:  halfW, y:  halfD },
-      { x: -halfW, y:  halfD },
+      { x: halfW, y: -halfD },
+      { x: halfW, y: halfD },
+      { x: -halfW, y: halfD },
     ];
 
     // Vetor solar horizontal no plano do solo (N=0° → y+, sentido horário)
     const az = deg2rad(azimuthDeg);
     const alt = deg2rad(altitudeDeg);
-    const sx = Math.sin(az); 
+    const sx = Math.sin(az);
     const sy = Math.cos(az);
     // Aplica rotação do plano/câmera (giramos tudo no chão)
     const rx = sx * Math.cos(rot) + sy * Math.sin(rot);
@@ -242,8 +241,8 @@ export default function SunpathCuritiba() {
     let shadowPoly: Vec2[] = [];
     if (aboveHorizon) {
       const tanAlt = Math.tan(alt);
-      const Lp = height / tanAlt; 
-      const offset = { x: -rx * Lp, y: -ry * Lp }; 
+      const Lp = height / tanAlt;
+      const offset = { x: -rx * Lp, y: -ry * Lp };
       const topProjected = base.map((b) => ({ x: b.x + offset.x, y: b.y + offset.y }));
       shadowPoly = convexHull(base.concat(topProjected));
     }
@@ -348,7 +347,7 @@ export default function SunpathCuritiba() {
     <div className="w-full">
       <div className={wrapperClass}>
         <canvas ref={canvasRef} className="w-full h-full block bg-transparent" />
-      
+
         <div className="absolute top-3 left-3 bg-sidebar-accent backdrop-primary-md p-3 rounded-md shadow-md z-5 space-y-3">
 
           <div className="flex items-center gap-2">
@@ -465,21 +464,19 @@ export default function SunpathCuritiba() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setShowGrid((v) => !v)}
-              className={`px-3 py-1 rounded text-sm font-medium ${
-                showGrid
+              className={`px-3 py-1 rounded text-sm font-medium ${showGrid
                   ? "bg-primary text-white"
                   : "bg-card hover:bg-primary text-foreground hover:text-white"
-              }`}
+                }`}
             >
               {showGrid ? "Ocultar Fundo/Grid" : "Mostrar Fundo/Grid"}
             </button>
             <button
               onClick={() => setShowCompass((v) => !v)}
-              className={`px-3 py-1 rounded text-sm font-medium ${
-                showCompass
+              className={`px-3 py-1 rounded text-sm font-medium ${showCompass
                   ? "bg-primary text-white"
                   : "bg-card hover:bg-primary text-foreground hover:text-white"
-              }`}
+                }`}
             >
               {showCompass ? "Ocultar Compasso" : "Mostrar Compasso"}
             </button>
