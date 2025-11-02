@@ -229,7 +229,7 @@ export default function Diagram2D() {
                   key={i}
                   d={pathD(arr)}
                   className="fill-none stroke-sun stroke-1"
-                  strokeDasharray="2 3"/>
+                  strokeDasharray="2 3" />
               ))}
 
               {/*Linhas sazonais fixas —---------------------------------- Sun Paths para datas de referência */}
@@ -366,13 +366,13 @@ export default function Diagram2D() {
 
           {/* Painel de controle **********************************************************/}
           <div className="absolute top-3 right-3 bg-sidebar-accent backdrop-primary-md p-3 rounded-md shadow-md z-5 space-y-3">
-            <fieldset style={{ border: "1px solid #ccc", padding: 12 }}>
+            <div >
               <legend>Controle</legend>
 
               {/* Slider | dias do ano */}
-              <label style={{ display: "block", marginBottom: 10 }}>
-                Dia do ano:&nbsp;
-                <b>
+              <div className=" font-sm ">
+                Data:&nbsp;
+                <b className="font-sm" >
                   {new Date(2025, 0, 1 + day - 1).toLocaleDateString("pt-BR", {
                     day: "2-digit",
                     month: "short",
@@ -386,10 +386,10 @@ export default function Diagram2D() {
                   onChange={(e) => setDay(+e.target.value)}
                   style={{ width: "100%" }}
                 />
-              </label>
+              </div>
 
               {/* Slider de hora do dia */}
-              <label style={{ display: "block" }}>
+              <div className="font-sm">
                 Hora do dia:&nbsp;
                 <b>
                   {String(Math.floor(hour)).padStart(2, "0")}:
@@ -406,47 +406,49 @@ export default function Diagram2D() {
                   onChange={(e) => setHour(+e.target.value)}
                   style={{ width: "100%" }}
                 />
-              </label>
-            </fieldset>
+              </div>
+            </div>
 
 
-            <fieldset style={{ border: "1px solid #ccc", padding: 12, marginTop: 12 }}>
+            <div>
               <legend>Localização</legend>
-              <label style={{ display: "block", marginBottom: 8 }}>
-                Latitude
+            <div className="flex flex-wrap items-center gap-2" >
+              <></>
+                <label className="p-px" > Latitude : </label>
                 <input
+                className="border rounded px-2 py-1 text-sm bg-card w-25"
                   type="number"
                   value={lat}
-                  onChange={(e) => setLat(parseFloat(e.target.value))}
-                  style={{ width: "100%" }}
-                />
-              </label>
-              <label style={{ display: "block", marginBottom: 8 }}>
-                Longitude
+                  onChange={(e) => setLat(parseFloat(e.target.value))}/>
+                  
+                
+                 <label className="p-px"> Long </label>
                 <input
+                  className="border rounded px-2 py-1 text-sm bg-card w-25"
                   type="number"
                   value={lon}
                   onChange={(e) => setLon(parseFloat(e.target.value))}
-                  style={{ width: "100%" }}
+                  
                 />
-              </label>
-              <label style={{ display: "block" }}>
-                Fuso (min vs UTC)
-                <input
-                  type="number"
-                  value={tz}
-                  onChange={(e) => setTz(parseInt(e.target.value))}
-                  style={{ width: "100%" }}
-                />
-              </label>
-            </fieldset>
+              
+             </div>
+             
+            </div>
 
-            <fieldset style={{ border: "1px solid #ccc", padding: 12, marginTop: 12 }}>
+            
               <legend>Projeção</legend>
-              <button onClick={() => animateTo("spherical")}>Spherical</button>
-              <button onClick={() => animateTo("stereographic")}>Stereographic</button>
-              <button onClick={() => animateTo("equidistant")}>Equidistant</button>
-            </fieldset>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => animateTo("spherical")}
+                  className="px-3 py-1 rounded text-sm font-medium bg-primary text-white"
+                >
+                  Spherical
+                </button>
+                <button >Spherical</button>
+                <button onClick={() => animateTo("stereographic")}>Stereographic</button>
+                <button onClick={() => animateTo("equidistant")}>Equidistant</button>
+                </div>
+            
             <div className="mt-4 bg-gray-50 p-3 rounded-md border text-sm">
               <div>☀️ <b>Altitude:</b> {altitude?.toFixed(2)}°</div>
               <div>🧭 <b>Azimute:</b> {azimuth?.toFixed(2)}°</div>
