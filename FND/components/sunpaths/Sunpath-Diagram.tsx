@@ -412,43 +412,47 @@ export default function Diagram2D() {
 
             <div>
               <legend>Localização</legend>
-            <div className="flex flex-wrap items-center gap-2" >
-              <></>
-                <label className="p-px" > Latitude : </label>
+              <div className="flex flex-wrap items-center gap-2" >
+                <></>
+                <label className="p-px text-sm" > Latitude : </label>
                 <input
-                className="border rounded px-2 py-1 text-sm bg-card w-25"
+                  className="border rounded px-2 py-1 text-sm bg-card w-25"
                   type="number"
                   value={lat}
-                  onChange={(e) => setLat(parseFloat(e.target.value))}/>
-                  
-                
-                 <label className="p-px"> Long </label>
+                  onChange={(e) => setLat(parseFloat(e.target.value))} />
+
+
+                <label className="p-px text-sm"> Long </label>
                 <input
                   className="border rounded px-2 py-1 text-sm bg-card w-25"
                   type="number"
                   value={lon}
                   onChange={(e) => setLon(parseFloat(e.target.value))}
-                  
+
                 />
-              
-             </div>
-             
+
+              </div>
+
             </div>
 
-            
-              <legend>Projeção</legend>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => animateTo("spherical")}
-                  className="px-3 py-1 rounded text-sm font-medium bg-primary text-white"
-                >
-                  Spherical
-                </button>
-                <button >Spherical</button>
-                <button onClick={() => animateTo("stereographic")}>Stereographic</button>
-                <button onClick={() => animateTo("equidistant")}>Equidistant</button>
-                </div>
-            
+
+            <legend>Projeção</legend>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => animateTo("spherical")}
+                className="px-3 py-1 rounded text-sm font-medium bg-primary text-white">
+                Esférica
+              </button>
+              <button onClick={() => animateTo("stereographic")}
+                className="px-3 py-1 rounded text-sm font-medium bg-primary text-white">
+                Estereografica
+              </button>
+              <button onClick={() => animateTo("equidistant")}
+                className="px-3 py-1 rounded text-sm font-medium bg-primary text-white">
+                Equidistante
+              </button>
+            </div>
+
             <div className="mt-4 bg-gray-50 p-3 rounded-md border text-sm">
               <div>☀️ <b>Altitude:</b> {altitude?.toFixed(2)}°</div>
               <div>🧭 <b>Azimute:</b> {azimuth?.toFixed(2)}°</div>
