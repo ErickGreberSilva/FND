@@ -5,6 +5,7 @@ import useSunCalc from "@/hooks/useSunCalc";
 
 type ProjectionType = "spherical" | "stereographic" | "equidistant";
 
+
 const DEFAULT_LAT = -25.4284;
 const DEFAULT_LON = -49.2733;
 const RAD = Math.PI / 180;
@@ -181,12 +182,44 @@ export default function Diagram2D() {
   const azimuthLabels = Array.from({ length: 24 }, (_, i) => -165 + i * 15);
   const wrapperClass =
     "relative w-full  rounded-md border overflow-hidden ";
+  // --- Helpers para polígono de sombra (casco convexo, monotone chain) ---
+  function cross(o: number[], a: number[], b: number[]) {
+    return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+  }
+  function convexHull(points: number[][]) {
+    if (points.length <= 3) return points.slice();
+    const pts = points
+      .slice()
+      .sort((p, q) => (p[0] === q[0] ? p[1] - q[1] : p[0] - q[0]));
+    const lower: number[][] = [];
+    for (const p of pts) {
+      while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], p) <= 0) {
+        lower.pop();
+      }
+      lower.push(p);
+    }
+    const upper: number[][] = [];
+    for (let i = pts.length - 1; i >= 0; i--) {
+      const p = pts[i];
+      while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], p) <= 0) {
+        upper.pop();
+      }
+      upper.push(p);
+    }
+    upper.pop();
+    lower.pop();
+    return lower.concat(upper);
+  }
+  // dimensões da edificação (m)
+  const [buildingWidth, setBuildingWidth] = useState(10);   // metros
+  const [buildingLength, setBuildingLength] = useState(10); // metros
+  const [buildingHeight, setBuildingHeight] = useState(20); // metros
   return (
     <div className={wrapperClass}>
       <div style={{ padding: 24, fontFamily: "Inter, system-ui, sans-serif" }}>
         <h1>☀️ Diagrama de estudo de Insolação</h1>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 16 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "680px 380px", gap: 16 }}>
           {/* SVG  ******************************************************************************************/}
           <div>
             <svg width={size} height={size}>
@@ -245,6 +278,7 @@ export default function Diagram2D() {
                       : dayRef === 1
                         ? { color: "oklch(0.84 0.12 66)", dash: "0", width: 1.2 } // Contínuas (01 Jan e 31 Dez)
                         : { color: "oklch(0.84 0.12 66)", dash: "2 3", width: 1 }; // Demais tracejadas
+
 
                 return (
                   <path
@@ -362,9 +396,115 @@ export default function Diagram2D() {
                 );
               })}
             </svg>
-          </div>
 
-          {/* Painel de controle **********************************************************/}
+          </div>
+          {/* ****************************************************** *******************************************************/}
+          {/* Vista superior do edifício com projeção real da sombra *******************************************************/}
+          {/* ****************************************************** *******************************************************/}
+
+          <div className="flex flex-col items-center justify-center  w-[480] p-3">
+            
+            <svg width={480} height={380} className=" mb-3">
+              {(() => {
+                const alt = altitude ?? 0;
+                const az = azimuth ?? 0;
+
+                const cx = 190;
+                const cy = 240;
+                const scale = 3; // fator de escala (px/m)
+
+                const W = buildingWidth * scale;
+                const L = buildingLength * scale;
+                const H = buildingHeight; // metros reais
+
+                const halfW = W / 2;
+                const halfL = L / 2;
+
+                // base da edificação no solo (orientada N-S)
+                const base: number[][] = [
+                  [cx - halfW, cy - halfL],
+                  [cx + halfW, cy - halfL],
+                  [cx + halfW, cy + halfL],
+                  [cx - halfW, cy + halfL],
+                ];
+
+                // edifício
+                const buildingRect = (
+                  <rect
+                    x={cx - halfW}
+                    y={cy - halfL}
+                    width={W}
+                    height={L}
+                    className="fill-border stroke-gray-900 stroke-1"
+                  />
+                );
+
+                if (alt <= 0) {
+                  return (
+                    <>
+                      {buildingRect}
+                      <text
+                        x={cx}
+                        y={cy + 70}
+                        textAnchor="middle"
+                        className="fill-gray-600 text-sm select-none"
+                      >
+                        🌙 Sol abaixo do horizonte
+                      </text>
+                    </>
+                  );
+                }
+
+                // Direção solar (radianos)
+                const altRad = (alt * Math.PI) / 180;
+                const azRad = (az * Math.PI) / 180;
+
+                // deslocamento no plano (projeção da sombra)
+                const cot = 1 / Math.tan(altRad);
+                const k = H * cot * scale;
+                const dx = -k * Math.sin(azRad);
+                const dy = k * Math.cos(azRad);
+
+                // base projetada (sombra máxima)
+                const shifted = base.map(([x, y]) => [x + dx, y + dy]);
+
+                // casco convexo da união
+                const hull = convexHull([...base, ...shifted]);
+                const points = hull.map((p) => p.join(",")).join(" ");
+
+                // direção do sol
+                const sunLen = 110;
+                const sunX = cx + Math.sin(azRad) * sunLen;
+                const sunY = cy - Math.cos(azRad) * sunLen;
+
+                return (
+                  <>
+                    {/* sombra projetada */}
+                    <polygon points={points} className="fill-gray-800 opacity-50" />
+
+                    {/* prédio */}
+                    {buildingRect}
+
+                    {/* direção solar */}
+                    <line
+                      x1={cx}
+                      y1={cy}
+                      x2={sunX}
+                      y2={sunY}
+                      className="stroke-red-500 stroke-[1.5] stroke-dashed"
+                    />
+                    <circle cx={sunX} cy={sunY} r={6} className="fill-yellow-400 stroke-yellow-500" />
+                  </>
+                );
+              })()}
+            </svg>
+
+
+          </div>
+          {/* ****************************************************** *******************************************************/}
+          {/* Painel de controle  ******************************************************************************************/}
+          {/* ****************************************************** *******************************************************/}
+
           <div className="absolute top-3 right-3 bg-sidebar-accent backdrop-primary-md p-3 rounded-md shadow-md z-5 space-y-3">
             <div >
               <legend>Controle</legend>
@@ -453,14 +593,53 @@ export default function Diagram2D() {
               </button>
             </div>
 
-            <div className="mt-4 bg-gray-50 p-3 rounded-md border text-sm">
-              <div>☀️ <b>Altitude:</b> {altitude?.toFixed(2)}°</div>
-              <div>🧭 <b>Azimute:</b> {azimuth?.toFixed(2)}°</div>
-              <div>🎯 <b>Declinação:</b> {declination?.toFixed(2)}°</div>
-              <div>🌅 <b>Nascer:</b> {sunrise?.toLocaleTimeString("pt-BR")}</div>
-              <div>🌇 <b>Pôr do Sol:</b> {sunset?.toLocaleTimeString("pt-BR")}</div>
-              <div>📏 <b>Duração do dia:</b> {dayLength?.toFixed(2)} h</div>
-              <div>{isDaylight ? "☀️ Dia" : "🌙 Noite"}</div>
+            <div className="mt-4 p-3 rounded-md border text-sm">
+              <div className="flex">
+                <b>Altitude:</b> {altitude?.toFixed(2)}°
+                <b>Azimute:</b> {azimuth?.toFixed(2)}°
+              </div>
+              <div className="flex">
+                <b>Nascer:</b> {sunrise?.toLocaleTimeString("pt-BR")}
+                <b>Pôr do Sol:</b> {sunset?.toLocaleTimeString("pt-BR")}
+              </div>
+              <div><b>Declinação:</b> {declination?.toFixed(2)}°</div>
+              <div>
+
+              </div>
+              <div><b>Duração do dia:</b> {dayLength?.toFixed(2)} h</div>
+              <div>{isDaylight ? "☀️ Dia" : "Noite"}</div>
+              {/* Inputs para dimensões do edifício */}
+            <div className="flex flex-col gap-2 w-full text-sm text-gray-800">
+              <div className="flex items-center justify-between">
+                <label className="font-medium">Largura (m):</label>
+                <input
+                  type="number"
+                  value={buildingWidth}
+                  onChange={(e) => setBuildingWidth(parseFloat(e.target.value) || 0)}
+                  className="w-20 border rounded px-2 py-1 bg-white text-right"
+                />
+              </div>
+
+              <div className="flex items-center justify-between">
+                <label className="font-medium">Comprimento (m):</label>
+                <input
+                  type="number"
+                  value={buildingLength}
+                  onChange={(e) => setBuildingLength(parseFloat(e.target.value) || 0)}
+                  className="w-20 border rounded px-2 py-1 bg-white text-right"
+                />
+              </div>
+
+              <div className="flex items-center justify-between">
+                <label className="font-medium">Altura (m):</label>
+                <input
+                  type="number"
+                  value={buildingHeight}
+                  onChange={(e) => setBuildingHeight(parseFloat(e.target.value) || 0)}
+                  className="w-20 border rounded px-2 py-1 bg-white text-right"
+                />
+              </div>
+            </div>
             </div>
           </div>
         </div>
