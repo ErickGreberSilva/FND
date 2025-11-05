@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { JSX, useMemo, useRef, useState } from "react";
 import useSunCalc from "@/hooks/useSunCalc";
 
 type ProjectionType = "spherical" | "stereographic" | "equidistant";
@@ -403,7 +403,7 @@ export default function Diagram2D() {
           {/* ****************************************************** *******************************************************/}
 
           <div className="flex flex-col items-center justify-center  w-[480] p-3">
-            
+
             <svg width={480} height={380} className=" mb-3">
               {(() => {
                 const alt = altitude ?? 0;
@@ -435,7 +435,7 @@ export default function Diagram2D() {
                     y={cy - halfL}
                     width={W}
                     height={L}
-                    className="fill-border stroke-gray-900 stroke-1"
+                    className="fill-border"
                   />
                 );
 
@@ -480,27 +480,325 @@ export default function Diagram2D() {
                 return (
                   <>
                     {/* sombra projetada */}
-                    <polygon points={points} className="fill-gray-800 opacity-50" />
+                    <polygon points={points} className="fill-gray-800 opacity-50 stroke-1 stroke-gray-900" />
 
                     {/* prédio */}
                     {buildingRect}
 
                     {/* direção solar */}
-                    <line
+                    {/* <line
                       x1={cx}
                       y1={cy}
                       x2={sunX}
                       y2={sunY}
-                      className="stroke-red-500 stroke-[1.5] stroke-dashed"
-                    />
-                    <circle cx={sunX} cy={sunY} r={6} className="fill-yellow-400 stroke-yellow-500" />
+                      className="stroke-red-500 stroke-[0.5]"
+                    /> */}
+                    <circle cx={sunX} cy={sunY} r={8} className="fill-yellow-400 stroke-orange-500 " strokeDasharray="2 3" />
                   </>
                 );
               })()}
             </svg>
+            {/* VISTA ISOMÉTRICA ORTOGRÁFICA — PONTO DE VISTA SUDOESTE (SW) */}
+            <div className="flex flex-col items-center justify-center bg-transparent border rounded-md p-3">
+              <svg width={500} height={500} className="bg-transparent">
+                {(() => {
+                  // ---- ENTRADAS (dos seus estados / hook SunCalc) ----
+                  const alt = (altitude ?? 0);     // graus
+                  const az = (azimuth ?? 0);     // graus (0=N, horário)
+                  const Wm = buildingWidth;        // m
+                  const Lm = buildingLength;       // m
+                  const Hm = buildingHeight;       // m
+
+                  // ---- Layout da cena (alinha com sua planta: px por metro) ----
+                  const scale = 3;                 // px/m
+                  const cx = 230;                  // centro X do desenho
+                  const cy = 270;                  // nível do solo em Y
+
+                  // ---- Projeção isométrica ortográfica — VIEWPOINT SW ----
+                  const RAD = Math.PI / 180;
+                  const theta = 225 * RAD;         // 225° = -135° → Sudoeste
+                  const alpha = 35.264 * RAD;      // isometria
+                  const c = Math.cos(theta), s = Math.sin(theta);
+                  const ca = Math.cos(alpha), sa = Math.sin(alpha);
+
+                  // Projeção (SVG: Y cresce para baixo → usar "- z * sa")
+                  function isoProjectMeters(x: number, y: number, z: number) {
+                    const u = (x * c - y * s);
+                    const v = (x * s + y * c) * ca - z * sa;
+                    return [cx + u * scale, cy + v * scale] as const;
+                  }
+
+                  // ---- Geometria do edifício (centrado no (0,0)) ----
+                  const hx = Wm / 2, hy = Lm / 2;
+                  // Base no sentido anti-horário: SW, SE, NE, NW
+                  const base3D: [number, number, number][] = [
+                    [-hx, -hy, 0], // SW
+                    [+hx, -hy, 0], // SE
+                    [+hx, +hy, 0], // NE
+                    [-hx, +hy, 0], // NW
+                  ];
+                  const top3D = base3D.map(([x, y]) => [x, y, Hm] as [number, number, number]);
+
+                  // ---- Sol (mesmo vetor da planta) ----
+                  const altRad = alt * RAD;
+                  const azRad = az * RAD;
+                  const sx = -Math.sin(azRad) * Math.cos(altRad);  // invertido
+                  const sy = Math.cos(azRad) * Math.cos(altRad);
+                  const sz = Math.sin(altRad);
+
+                  // ---- Sombra: projetar o topo no z=0 (solo) e fazer casco convexo com a base ----
+                  let shadowHull: [number, number, number][] | null = null;
+                  if (sz > 0) {
+                    const t = Hm / sz; // mesmo t para todos vértices do topo (altura constante)
+                    const projTop = top3D.map(([x, y, z]) => [x - sx * t, y - sy * t, 0] as [number, number, number]);
+                    const all = [...base3D, ...projTop];
+                    const hull2D = convexHull2D(all.map(([x, y]) => [x, y]));
+                    shadowHull = hull2D.map(([x, y]) => [x, y, 0] as [number, number, number]);
+                  }
+
+                  // ---- Helpers ----
+                  function pts(arr: [number, number, number][]) {
+                    return arr.map(([x, y, z]) => isoProjectMeters(x, y, z).join(",")).join(" ");
+                  }
+                  function convexHull2D(pts: [number, number][]) {
+                    if (pts.length <= 3) return pts.slice();
+                    const A = pts.slice().sort((p, q) => p[0] === q[0] ? p[1] - q[1] : p[0] - q[0]);
+                    const cross = (o: [number, number], a: [number, number], b: [number, number]) =>
+                      (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+                    const lower: [number, number][] = [];
+                    for (const p of A) {
+                      while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], p) <= 0) lower.pop();
+                      lower.push(p);
+                    }
+                    const upper: [number, number][] = [];
+                    for (let i = A.length - 1; i >= 0; i--) {
+                      const p = A[i];
+                      while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], p) <= 0) upper.pop();
+                      upper.push(p);
+                    }
+                    upper.pop(); lower.pop();
+                    return lower.concat(upper);
+                  }
+
+                  // ---- Grade do solo (isométrica) ----
+                  const grid: JSX.Element[] = [];
+                  const gridStep = 10, gridExtent = 120;
+                  for (let gx = -gridExtent; gx <= gridExtent; gx += gridStep) {
+                    const a = isoProjectMeters(gx, -gridExtent, 0);
+                    const b = isoProjectMeters(gx, +gridExtent, 0);
+                    grid.push(<line key={`gx-${gx}`} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} className="stroke-gray-300" strokeWidth={0.5} />);
+                  }
+                  for (let gy = -gridExtent; gy <= gridExtent; gy += gridStep) {
+                    const a = isoProjectMeters(-gridExtent, gy, 0);
+                    const b = isoProjectMeters(+gridExtent, gy, 0);
+                    grid.push(<line key={`gy-${gy}`} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} className="stroke-gray-300" strokeWidth={0.5} />);
+                  }
+
+                  // ---- Círculo no chão (N S L O) centralizado no edifício ----
+                  const compassEls = (() => {
+                    const baseR = 40;           // raio original
+                    const groundR = baseR * 1.8; // +50% de aumento
+                    const tickLen = 3;          // mantém ticks no mesmo tamanho
+                    const steps = 160;          // resolução do contorno
+
+                    // Contorno circular (no plano do chão)
+                    const circlePts = Array.from({ length: steps }, (_, i) => {
+                      const t = (i / steps) * Math.PI * 2;
+                      const x = groundR * Math.cos(t);
+                      const y = groundR * Math.sin(t);
+                      const [u, v] = isoProjectMeters(x, y, 0);
+                      return `${u},${v}`;
+                    }).join("L");
+
+                    // Ticks de 15°
+                    const ticks: JSX.Element[] = [];
+                    for (let deg = 0; deg < 360; deg += 15) {
+                      const t = (deg * Math.PI) / 180;
+                      const x1 = groundR * Math.cos(t);
+                      const y1 = groundR * Math.sin(t);
+                      const x2 = (groundR + tickLen) * Math.cos(t);
+                      const y2 = (groundR + tickLen) * Math.sin(t);
+                      const [u1, v1] = isoProjectMeters(x1, y1, 0);
+                      const [u2, v2] = isoProjectMeters(x2, y2, 0);
+                      ticks.push(
+                        <line
+                          key={`tick-${deg}`}
+                          x1={u1}
+                          y1={v1}
+                          x2={u2}
+                          y2={v2}
+                          className={deg % 45 === 0 ? "stroke-gray-500" : "stroke-gray-300"}
+                          strokeWidth={deg % 45 === 0 ? 1.1 : 0.6}
+                        />
+                      );
+                    }
+
+                    // Rótulos cardeais (N, S, L, O) - posição atualizada
+                    const [uN, vN] = isoProjectMeters(0, +groundR + 8, 0);
+                    const [uS, vS] = isoProjectMeters(0, -groundR - 6, 0);
+                    const [uL, vL] = isoProjectMeters(-groundR - 8, 0, 0);
+                    const [uO, vO] = isoProjectMeters(+groundR + 8, 0, 0);
+
+                    // Vetor solar projetado no solo (referência)
+                    const azRad = (azimuth ?? 0) * Math.PI / 180;
+                    const altRad = (altitude ?? 0) * Math.PI / 180;
+                    const sxg = -Math.sin(azRad) * Math.cos(altRad);
+                    const syg = Math.cos(azRad) * Math.cos(altRad);
+                    const [uc, vc] = isoProjectMeters(0, 0, 0);
+                    const [ux, vy] = isoProjectMeters(sxg * groundR, syg * groundR, 0);
+
+                    return (
+                      <>
+                        <path
+                          d={`M${circlePts}Z`}
+                          className="fill-none stroke-gray-400"
+                          strokeWidth={1.2}
+                        />
+                        <g>{ticks}</g>
+
+                        {/* Rótulos cardeais */}
+                        <text x={uN} y={vN} textAnchor="middle" className="fill-gray-800 font-bold">
+                          N
+                        </text>
+                        <text x={uS} y={vS} textAnchor="middle" className="fill-gray-800 font-bold">
+                          S
+                        </text>
+                        <text x={uL} y={vL} textAnchor="middle" className="fill-gray-800 font-bold">
+                          L
+                        </text>
+                        <text x={uO} y={vO} textAnchor="middle" className="fill-gray-800 font-bold">
+                          O
+                        </text>
+
+                        {/* vetor solar no chão */}
+                        {(altitude ?? 0) > 0 && (
+                          <>
+                            <line
+                              x1={uc}
+                              y1={vc}
+                              x2={ux}
+                              y2={vy}
+                              className="stroke-red-500 stroke-[1.2]"
+                              strokeDasharray="2 3"
+                            />
+                            <circle cx={ux} cy={vy} r={3} className="fill-red-500" />
+                          </>
+                        )}
+                      </>
+                    );
+                  })();
+
+                  return (
+                    <>
+                      {/* grade */}
+                      <g opacity={0.35}>{grid}</g>
+
+                      {/* círculo N S L O (no chão, centralizado no edifício) */}
+                      {compassEls}
+
+                      {/* --- ARCO SOLAR (mesmo sol, projetado sobre a esfera do compass) --- */}
+                      {(() => {
+                        const RAD = Math.PI / 180;
+                        const φ = lat * RAD;
+                        const { E, dec } = solarBasics(day);
+                        const δ = dec;
+                        const groundR = 40 * 1.8;
+
+                        // Ângulo horário no nascer/pôr
+                        const H0 = Math.acos(Math.max(-1, Math.min(1, -Math.tan(φ) * Math.tan(δ))));
+
+                        // Função: posição solar (alt, az) por H
+                        function solarPosition(H: number) {
+                          const sin_h = Math.sin(φ) * Math.sin(δ) + Math.cos(φ) * Math.cos(δ) * Math.cos(H);
+                          const alt = Math.asin(Math.max(-1, Math.min(1, sin_h)));
+                          const az = Math.atan2(
+                            -Math.sin(H),
+                            Math.tan(δ) * Math.cos(φ) - Math.sin(φ) * Math.cos(H)
+                          );
+                          return { alt, az };
+                        }
+
+                        // Arco real sobre a esfera (nada no chão, tudo na "cúpula")
+                        const arcPts: [number, number, number][] = [];
+                        for (let H = -H0; H <= H0; H += Math.PI / 60) {
+                          const { alt, az } = solarPosition(H);
+                          if (alt >= 0) {
+                            const x = -groundR * Math.sin(az) * Math.cos(alt);
+                            const y = groundR * Math.cos(az) * Math.cos(alt);
+                            const z = groundR * Math.sin(alt);
+                            arcPts.push([x, y, z]);
+                          }
+                        }
+
+                        const arcPath = arcPts
+                          .map(([x, y, z], i) => {
+                            const [u, v] = isoProjectMeters(x, y, z);
+                            return `${i === 0 ? "M" : "L"}${u},${v}`;
+                          })
+                          .join(" ");
+
+                        // Usa o mesmo Sol já existente (não recalcula)
+                        const altNow = (altitude ?? 0) * RAD;
+                        const azNow = (azimuth ?? 0) * RAD;
+                        const xS = -groundR * Math.sin(azNow) * Math.cos(altNow);
+                        const yS = groundR * Math.cos(azNow) * Math.cos(altNow);
+                        const zS = groundR * Math.sin(altNow);
+                        const [ux, uy] = isoProjectMeters(xS, yS, zS);
+
+                        return (
+                          <>
+                            {/* arco na esfera */}
+                            <path d={arcPath} className="fill-none stroke-yellow-400" strokeWidth={1.8} strokeDasharray="2 3" />
+                            {/* o mesmo Sol atual, sobre o arco */}
+                            {(altitude ?? 0) > 0 && (
+                              <circle cx={ux} cy={uy} r={5} className="fill-yellow-400 stroke-yellow-600" />
+                            )}
+                          </>
+                        );
+                      })()}
+
+                      {/* sombra */}
+                      {shadowHull && (
+                        <polygon points={pts(shadowHull)} className="fill-gray-500 opacity-40" />
+                      )}
+   {/* arestas verticais */}
+                      {base3D.map(([x, y, z], i) => {
+                        const [u1, v1] = isoProjectMeters(x, y, z);
+                        const [u2, v2] = isoProjectMeters(x, y, Hm);
+                        return <line key={`edge-${i}`} x1={u1} y1={v1} x2={u2} y2={v2} className="stroke-gray-900 stroke-[0.6]" />;
+                      })}
+
+                      {/* faces visíveis para viewpoint SW: SUL e OESTE */}
+                      {/* Sul (SW-SE-SEtop-SWtop) */}
+                      <polygon points={pts([base3D[0], base3D[1], top3D[1], top3D[0]])} className="fill-gray-700" />
+                      {/* Oeste (NW-SW-SWtop-NWtop) */}
+                      <polygon points={pts([base3D[3], base3D[0], top3D[0], top3D[3]])} className="fill-gray-600" />
+                      {/* Topo */}
+                      <polygon points={pts(top3D)} className="fill-gray-200" />
+
+                   
+
+                      {/* vetor solar 3D (apenas referência) */}
+                      {sz > 0 && (() => {
+                        const len = 40; // m
+                        const [ux, uy] = isoProjectMeters(0, 0, Hm * 0.6);
+                        const [vx, vy] = isoProjectMeters(sx * len, sy * len, Hm * 0.6 + sz * len);
+                        return (
+                          <>
+                          </>
+                        );
+                      })()}
+                    </>
+                  );
+                })()}
+              </svg>
+              <span className="text-sm text-gray-700 mt-1">Vista Isométrica — Ponto de vista Sudoeste (SW)</span>
+            </div>
+
 
 
           </div>
+
           {/* ****************************************************** *******************************************************/}
           {/* Painel de controle  ******************************************************************************************/}
           {/* ****************************************************** *******************************************************/}
@@ -609,37 +907,37 @@ export default function Diagram2D() {
               <div><b>Duração do dia:</b> {dayLength?.toFixed(2)} h</div>
               <div>{isDaylight ? "☀️ Dia" : "Noite"}</div>
               {/* Inputs para dimensões do edifício */}
-            <div className="flex flex-col gap-2 w-full text-sm text-gray-800">
-              <div className="flex items-center justify-between">
-                <label className="font-medium">Largura (m):</label>
-                <input
-                  type="number"
-                  value={buildingWidth}
-                  onChange={(e) => setBuildingWidth(parseFloat(e.target.value) || 0)}
-                  className="w-20 border rounded px-2 py-1 bg-white text-right"
-                />
-              </div>
+              <div className="flex flex-col gap-2 w-full text-sm text-gray-800">
+                <div className="flex items-center justify-between">
+                  <label className="font-medium">Largura (m):</label>
+                  <input
+                    type="number"
+                    value={buildingWidth}
+                    onChange={(e) => setBuildingWidth(parseFloat(e.target.value) || 0)}
+                    className="w-20 border rounded px-2 py-1 bg-white text-right"
+                  />
+                </div>
 
-              <div className="flex items-center justify-between">
-                <label className="font-medium">Comprimento (m):</label>
-                <input
-                  type="number"
-                  value={buildingLength}
-                  onChange={(e) => setBuildingLength(parseFloat(e.target.value) || 0)}
-                  className="w-20 border rounded px-2 py-1 bg-white text-right"
-                />
-              </div>
+                <div className="flex items-center justify-between">
+                  <label className="font-medium">Comprimento (m):</label>
+                  <input
+                    type="number"
+                    value={buildingLength}
+                    onChange={(e) => setBuildingLength(parseFloat(e.target.value) || 0)}
+                    className="w-20 border rounded px-2 py-1 bg-white text-right"
+                  />
+                </div>
 
-              <div className="flex items-center justify-between">
-                <label className="font-medium">Altura (m):</label>
-                <input
-                  type="number"
-                  value={buildingHeight}
-                  onChange={(e) => setBuildingHeight(parseFloat(e.target.value) || 0)}
-                  className="w-20 border rounded px-2 py-1 bg-white text-right"
-                />
+                <div className="flex items-center justify-between">
+                  <label className="font-medium">Altura (m):</label>
+                  <input
+                    type="number"
+                    value={buildingHeight}
+                    onChange={(e) => setBuildingHeight(parseFloat(e.target.value) || 0)}
+                    className="w-20 border rounded px-2 py-1 bg-white text-right"
+                  />
+                </div>
               </div>
-            </div>
             </div>
           </div>
         </div>
