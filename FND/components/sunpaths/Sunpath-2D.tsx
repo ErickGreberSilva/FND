@@ -35,7 +35,7 @@ function convexHull(points: Vec2[]): Vec2[] {
 }
 
 /** =========================
- *  Sol: posição solar (simplificada e estável)
+ *  Sol: posição solar 
  *  ========================= */
 function solarPosition(date: Date, latDeg: number, lonDeg: number) {
   const rad = Math.PI / 180;
@@ -145,7 +145,7 @@ export default function SunpathCuritiba() {
     // Limpa
     ctx.clearRect(0, 0, W, H);
 
-    // Fundo/grade só se habilitado. Se desligado → canvas permanece transparente.
+    // Fundo/grade
     if (showGrid) {
       ctx.fillStyle = "#dfdfdf";
       ctx.fillRect(0, 0, W, H);
@@ -217,7 +217,7 @@ export default function SunpathCuritiba() {
       });
     }
 
-    // Edifício (retângulo alinhado ao eixo, como no seu modelo)
+    // Edifício
     const halfW = width / 2;
     const halfD = depth / 2;
     const base: Vec2[] = [
@@ -227,12 +227,12 @@ export default function SunpathCuritiba() {
       { x: -halfW, y: halfD },
     ];
 
-    // Vetor solar horizontal no plano do solo (N=0° → y+, sentido horário)
+    // Vetor solar horizontal no plano do solo
     const az = deg2rad(azimuthDeg);
     const alt = deg2rad(altitudeDeg);
     const sx = Math.sin(az);
     const sy = Math.cos(az);
-    // Aplica rotação do plano/câmera (giramos tudo no chão)
+    // Aplica rotação do plano/câmera
     const rx = sx * Math.cos(rot) + sy * Math.sin(rot);
     const ry = -sx * Math.sin(rot) + sy * Math.cos(rot);
 
@@ -267,7 +267,7 @@ export default function SunpathCuritiba() {
       ctx.stroke();
     }
 
-    // Desenha base do prédio (cheio, não wireframe) — mesmas cores do seu modelo //
+    // Desenha base do prédio
     const bp = base.map(toScreen);
     ctx.beginPath();
     ctx.moveTo(bp[0].x, bp[0].y);
@@ -279,7 +279,7 @@ export default function SunpathCuritiba() {
     ctx.lineWidth = 0.01;
     ctx.stroke();
 
-    // Indicador do sol no aro da bússola (respeita rotação do plano)
+    // Indicador do sol no aro da bússola 
     const sunR = 150 + 32;
     const sxp = CX + Math.sin(az + deg2rad(rotationDeg)) * sunR;
     const syp = CY - Math.cos(az + deg2rad(rotationDeg)) * sunR;
@@ -290,7 +290,7 @@ export default function SunpathCuritiba() {
     ctx.strokeStyle = "rgba(255,255,255,0.7)";
     ctx.stroke();
 
-    // HUD superior (mantido)
+    // HUD superior
     ctx.fillStyle = "#fff";
     ctx.font = "12px system-ui, sans-serif";
     ctx.textAlign = "left";
@@ -305,13 +305,13 @@ export default function SunpathCuritiba() {
 
   /** ========= Handlers ========= */
 
-  // Slider de horário — 0..1440, step 5
+  // Slider de horário
   const handleTimeSlider = (e: React.ChangeEvent<HTMLInputElement>) => {
     const minutes = parseInt(e.target.value, 10);
     setTimeMinutes(minutes);
   };
 
-  // DateTime local — mantém minutos do slider
+  // horario
   const handleDateTimeLocal = (e: React.ChangeEvent<HTMLInputElement>) => {
     const d = new Date(e.target.value);
     if (isNaN(d.getTime())) return;

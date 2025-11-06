@@ -119,65 +119,66 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
-.customshadow{
+.customshadow {
   box-shadow: 0px 0px 7px 0px grey;
 }
 
-.painel{
-background: #016a49de;
-    height: -webkit-fill-available;
-    left: 0;
-    top: 0;
-    border-radius: 0;
+.painel {
+  background: #016a49de;
+  height: -webkit-fill-available;
+  left: 0;
+  top: 0;
+  border-radius: 0;
 }
 
 .ordercalc {
-    border-radius: 20px;
-    background: var(--light);
-    padding: 24px;
-    overflow-x: auto;
-    margin-bottom: 10px;
+  border-radius: 20px;
+  background: var(--light);
+  padding: 24px;
+  overflow-x: auto;
+  margin-bottom: 10px;
 }
 
 .titulotabextra {
-    background-color: #eeeeee;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    border-bottom-color: #cccccc;
-    border-bottom-width: 2px;
-    box-shadow: 2px 2px 6px rgb(0 0 0 / 22%);
-    z-index: 1;
-    position: relative;
-    font-family: 'Lato';
-    font-size: 16px;
-    padding: 6px;
+  background-color: #eeeeee;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-color: #cccccc;
+  border-bottom-width: 2px;
+  box-shadow: 2px 2px 6px rgb(0 0 0 / 22%);
+  z-index: 1;
+  position: relative;
+  font-family: 'Lato';
+  font-size: 16px;
+  padding: 6px;
 }
 
 table.ptable {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: 'lato', sans-serif;
-    font-size: 14px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    /* border-radius: 20px; */
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'lato', sans-serif;
+  font-size: 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  /* border-radius: 20px; */
 }
 
 table.ptable tr {
-    border-bottom: 1px solid #ccc;
-    border-radius: 20px;
+  border-bottom: 1px solid #ccc;
+  border-radius: 20px;
 }
 
 #html_zona table.ptable th {
-    background-color: #4193e3;
-    color: white;
-    text-align: left;
-    padding: 10px;
-    width: 10%;
+  background-color: #4193e3;
+  color: white;
+  text-align: left;
+  padding: 10px;
+  width: 10%;
 }
 
 .poppins-thin {
@@ -287,6 +288,7 @@ table.ptable tr {
   font-weight: 900;
   font-style: italic;
 }
+
 .lato-thin {
   font-family: "Lato", sans-serif;
   font-weight: 100;
@@ -347,3 +349,81 @@ table.ptable tr {
   font-style: italic;
 }
 
+/* Estilo geral dos controles Leaflet */
+.leaflet-control {
+  background-color: var(--leaflet-bg) !important;
+  /* fundo semitransparente */
+  color: var(--leaflet-color) !important;
+  /* texto branco */
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  font-family: "Inter", sans-serif;
+}
+
+/* Botões (zoom +, zoom -) */
+.leaflet-bar a {
+  background-color: var(--leaflet-bg) !important;
+  color: var(--leaflet-color) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.leaflet-bar a:hover {
+  background-color: var(--leaflet-bg) !important;
+  color: #fff !important;
+}
+
+/* Escala gráfica */
+.leaflet-control-scale-line {
+  background: var(--leaflet-bg)  !important;
+  color: var(--leaflet-color) !important;
+  border: none !important;
+  border-radius: 2px;
+}
+
+/* Caixa de camadas */
+.leaflet-control-layers {
+  background-color: rgba(25, 25, 25, 0.8) !important;
+  color: var(--leaflet-color) !important;
+  border-radius: 8px !important;
+}
+
+.leaflet-control-layers-selector {
+  accent-color: var(--primary);
+  /* cor do checkbox */
+}
+
+
+.leaflet-control-geocoder {
+  background:var(--leaflet-bg) !important;
+  color: var(--leaflet-color) !important;
+  border-radius: 8px !important;
+  border: 1px solid #444;
+}
+
+.leaflet-control-geocoder input {
+  background:var(--leaflet-bg) !important;
+  color:var(--leaflet-color);
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+:root {
+  --leaflet-bg: rgba(255, 255, 255, 0.9);
+  --leaflet-color: #000;
+}
+
+.dark {
+  --leaflet-bg: rgba(30, 30, 30, 0.9);
+  --leaflet-color: #fff;
+}
+
+.leaflet-control {
+  background-color: var(--leaflet-bg) !important;
+  color: var(--leaflet-color) !important;
+}
+
+.leaflet-control-geocoder-icon { background-color: var(--leaflet-bg) !important;
+  color: var(--leaflet-color) !important;}
