@@ -1,11 +1,14 @@
 "use client";
+import { useLote } from "@/context/LoteContext";
 import * as turf from "@turf/turf";
 import { useEffect, useRef, useState } from "react";
 import "leaflet/dist/leaflet.css";
 import { utmToLatLon } from "@/hooks/utmToLatLon";
 import { useLoteBusca } from "@/context/LoteBuscaContext";
 import { Button } from "../ui/button";
-
+import L from "leaflet";
+import "esri-leaflet";
+import "leaflet-draw/dist/leaflet.draw.css";
 declare global {
   interface Window {
     L: any;
@@ -138,7 +141,7 @@ export default function Potencial() {
   const [downloadReady, setDownloadReady] = useState(false);
   const [lotesNoEntorno, setLotesNoEntorno] = useState<any>(null);
   const [lotesClipados, setLotesClipados] = useState<any>(null);
-
+const { setMapExtent } = useLote();
   const [processing, setProcessing] = useState(false);
   const [loteSelecionado, setLoteSelecionado] = useState<any>(null);
   // =========================================================================== Inicia os mapas
@@ -179,7 +182,7 @@ export default function Potencial() {
 
           L.esri
             .tiledMapLayer({
-              url: "https://geocuritiba.ippuc.org.br/server/rest/services/Hosted/Ortofotos2019/MapServer",
+              url: "https://geocuritiba.ippuc.org.br/server/rest/services/Hosted/Ortofotos2019/MapServer/",
               maxZoom: 22,
             })
             .addTo(m);
@@ -238,7 +241,55 @@ export default function Potencial() {
           // ===========================================================================  Controle - Zoom
           L.control.zoom({ position: "topright" }).addTo(m);
           setMap(m);
+// ======================= Habilitar desenho de retângulo =======================
+await loadScript("https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js");
 
+// Cria um featureGroup para armazenar o que for desenhado
+const drawnItems = new L.FeatureGroup();
+m.addLayer(drawnItems);
+
+// Cria o controle de desenho (somente retângulo)
+const drawControl = new L.Control.Draw({
+  draw: {
+    polygon: false,
+    polyline: false,
+    circle: false,
+    circlemarker: false,
+    marker: false,
+    rectangle: {
+      shapeOptions: {
+        color: "#ff0000",
+        weight: 2,
+      },
+    },
+  },
+  edit: {
+    featureGroup: drawnItems,
+  },
+});
+
+m.addControl(drawControl);
+
+// Evento disparado quando o usuário termina de desenhar
+m.on(L.Draw.Event.CREATED, function (event: any) {
+  const layer = event.layer;
+  drawnItems.addLayer(layer);
+
+  // Obter coordenadas do retângulo
+  const bounds = layer.getBounds();
+  const corners = [
+    bounds.getSouthWest(),
+    bounds.getNorthWest(),
+    bounds.getNorthEast(),
+    bounds.getSouthEast(),
+  ];
+
+  // Exibir coordenadas no console
+  console.log("🟩 Coordenadas dos vértices (Lat, Lng):");
+  corners.forEach((c, i) =>
+    console.log(`V${i + 1}: ${c.lat.toFixed(6)}, ${c.lng.toFixed(6)}`)
+  );
+});
           // ===========================================================================  Controle - Layer
 
           L.control
@@ -301,7 +352,10 @@ export default function Potencial() {
             xmax: latLngToWebMercator(ne).x,
             ymax: latLngToWebMercator(ne).y,
           };
-
+setMapExtent({
+  sw: [sw.lat, sw.lng],
+  ne: [ne.lat, ne.lng],
+});
           const geometry = {
             ...extent,
             spatialReference: { wkid: 102100, latestWkid: 3857 },

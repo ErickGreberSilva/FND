@@ -107,9 +107,7 @@ export default function LoteSVG({
             setLoading(true);
             try {
                 // =========================================================================== Retorna geometria em WGS84
-                const url = `https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_GeoCuritiba_MapaCadastral/MapServer/16/query?where=gtm_ind_fiscal='${encodeURIComponent(
-                    ifiscal
-                )}'&outFields=gtm_ind_fiscal,gtm_num_predial,gtm_nm_logradouro,gtm_nm_bairro&returnGeometry=true&outSR=4326&f=json`;
+                const url = `https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_GeoCuritiba_MapaCadastral/MapServer/16/query?where=gtm_ind_fiscal='${encodeURIComponent(ifiscal)}'&outFields=gtm_ind_fiscal,gtm_num_predial,gtm_nm_logradouro,gtm_nm_bairro&returnGeometry=true&outSR=4326&f=json`;
 
                 const res = await fetch(url);
                 const data: EsriQueryResponse = await res.json();

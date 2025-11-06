@@ -39,6 +39,7 @@
     "fs": "^0.0.1-security",
     "layerchart": "^1.0.12",
     "leaflet": "^1.9.4",
+    "leaflet-draw": "^1.0.4",
     "lucide-react": "^0.546.0",
     "mapbox-gl-esri-sources": "^0.0.7",
     "maplibre-gl": "^5.10.0",

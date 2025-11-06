@@ -16,10 +16,17 @@ export interface LoteData {
   centro?: [number, number]; // centro aproximado
 }
 
+export interface MapExtent {
+  sw: [number, number]; // canto sudoeste (lat, lng)
+  ne: [number, number]; // canto nordeste (lat, lng)
+}
+
 interface LoteContextType {
   lote: LoteData | null;
   loading: boolean;
   error: string | null;
+  mapExtent: MapExtent | null; // 🆕 bounding box atual do mapa
+  setMapExtent: (extent: MapExtent | null) => void; // 🆕 função para atualizar
 }
 
 const LoteContext = createContext<LoteContextType | undefined>(undefined);
@@ -29,6 +36,9 @@ export function LoteProvider({ children }: { children: ReactNode }) {
   const [lote, setLote] = useState<LoteData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // 🆕 Estado global da extensão do mapa
+  const [mapExtent, setMapExtent] = useState<MapExtent | null>(null);
 
   useEffect(() => {
     const buscarDadosLote = async () => {
@@ -80,7 +90,7 @@ export function LoteProvider({ children }: { children: ReactNode }) {
 
         setLote(loteData);
 
-        // Busca o CEP (camada 11) baseado no código de logradouro
+        // Busca o CEP (camada 11)
         try {
           const urlCep = `https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_GeoCuritiba_MapaCadastral/MapServer/11/query?where=gtm_cod_logradouro='${attr.gtm_cod_logradouro}'&outFields=cep_e&f=json`;
           const resCep = await fetch(urlCep);
@@ -102,10 +112,10 @@ export function LoteProvider({ children }: { children: ReactNode }) {
     };
 
     buscarDadosLote();
-  }, [ifiscal]); // 🔁 Atualiza automaticamente sempre que o valor de ifiscal mudar
+  }, [ifiscal]); // 🔁 Atualiza automaticamente quando muda o valor de ifiscal
 
   return (
-    <LoteContext.Provider value={{ lote, loading, error }}>
+    <LoteContext.Provider value={{ lote, loading, error, mapExtent, setMapExtent }}>
       {children}
     </LoteContext.Provider>
   );

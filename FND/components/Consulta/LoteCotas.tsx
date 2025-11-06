@@ -207,10 +207,12 @@ export default function LoteSVGComCotas({
 
             setLoading(true);
             try {
-                const url = `https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_GeoCuritiba_MapaCadastral/MapServer/16/query?where=gtm_ind_fiscal='${encodeURIComponent(
-                    ifiscal
-                )}'&outFields=gtm_ind_fiscal,gtm_num_predial,gtm_nm_logradouro,gtm_nm_bairro&returnGeometry=true&outSR=4326&f=json`;
+                const where = `gtm_ind_fiscal='${ifiscal}'`;
 
+const url = `https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_GeoCuritiba_MapaCadastral/MapServer/15/query?where=${encodeURIComponent(
+  where
+)}&outFields=gtm_ind_fiscal,gtm_num_predial,gtm_nm_logradouro,gtm_nm_bairro&returnGeometry=true&outSR=4326&f=json`;
+                
                 const res = await fetch(url);
                 const data: EsriQueryResponse = await res.json();
 
