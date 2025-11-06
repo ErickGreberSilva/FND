@@ -38,10 +38,10 @@ export default function Home() {
                 <LoteSVGComCotas />
                 <LoteValores />
                  <SVGFromMapServer
-        layerIds={[ 5, 14, 16, 64, 65, 72, 73, 75, 76, 77, 80, 81, 83 ]}
+        layerIds={[ 5, 14, 16, 64, 65, 72, 73, 75, 76, 77, 80, 81, 82, 83 ]}
         width={1500}
         height={1000}
-        expandFactor={3}
+        expandFactor={1.5}
       />
               </div>
             </div>

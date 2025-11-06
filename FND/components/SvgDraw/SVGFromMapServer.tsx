@@ -87,7 +87,7 @@ async function fetchAllFeaturesPaginated(urlBase: string, delayMs = 300) {
 }
 
 export default function SVGFromMapServer({
-  layerIds = [5, 14, 16, 63, 64, 65, 72, 73, 75, 76, 77, 80, 81, 83],
+  layerIds = [5, 14, 16, 64, 65, 72, 73, 75, 76, 77, 82, 80, 81, 83],
   width = 800,
   height = 800,
   expandFactor = 3,
@@ -125,7 +125,6 @@ export default function SVGFromMapServer({
 
         for (const id of layerIds) {
           const urlBase = `${serviceBase}/${id}/query?f=json&where=1%3D1&returnGeometry=true&spatialRel=esriSpatialRelIntersects&geometry=${geomParam}&geometryType=esriGeometryEnvelope&inSR=102100&outFields=*&outSR=102100`;
-
           const features = await fetchAllFeaturesPaginated(urlBase, 300);
           all[id] = features;
         }
@@ -152,124 +151,136 @@ export default function SVGFromMapServer({
       height
     );
 
+    // 🎨 estilos
     const layerStyle: Record<
       number,
       { fill?: string; stroke?: string; strokeWidth?: number; fillOpacity?: number; strokeDasharray?: string }
     > = {
       83: { fill: "#f9efd3" },
       81: { fill: "#e9ffbe" },
-      77: { fill: "#a4a4a2" },
       80: { fill: "#e6e6e4" },
+      82: { fill: "#ffffbe", stroke: "#ff0000", strokeWidth: 1 }, // ⬅️ novo layer 82
+      77: { fill: "#a4a4a2" },
       16: { fill: "#8be8ff" },
       14: { fill: "#c9f7b8" },
       76: { stroke: "#ffffff", strokeWidth: 1, strokeDasharray: "3,3" },
       75: { stroke: "red", strokeWidth: 1 },
-      63: { fill: "green", stroke: "green", fillOpacity: 0.5 },
       64: { fill: "green", stroke: "green", fillOpacity: 0.5 },
       72: { fill: "#fbcac3", stroke: "#000000", strokeWidth: 1 },
+      73: { fill: "#fbe0dc", stroke: "#000000", strokeWidth: 1 },
+      65: {},
     };
 
+    // 🧭 ordem (menor = mais baixo)
     const orderPriority = (layerId: number) => {
       if (layerId === 83) return 1;
       if (layerId === 81) return 2;
       if (layerId === 77) return 3;
-      if (layerId === 80) return 4;
-      if (layerId === 16) return 5;
-      if (layerId === 14) return 6;
-      if (layerId === 76) return 7;
-      if (layerId === 65) return 8;
-      if ([73, 63, 72, 64, 5].includes(layerId)) return 10 + [73, 63, 72, 64, 5].indexOf(layerId);
-      return 9;
+      if (layerId === 82) return 4; // ⬅️ acima do 77
+      if (layerId === 80) return 5;
+      if (layerId === 16) return 6;
+      if (layerId === 14) return 7;
+      if (layerId === 76) return 8;
+      if (layerId === 65) return 9;
+      if (layerId === 73) return 10;
+      if (layerId === 72) return 11;
+      if (layerId === 64) return 12;
+      if (layerId === 75) return 13;
+      if (layerId === 5) return 14;
+      return 20;
     };
 
     const orderedLayers = Object.keys(featuresByLayer)
       .map(Number)
       .sort((a, b) => orderPriority(a) - orderPriority(b));
 
-    const groups: JSX.Element[] = [];
+    const layerGroups: JSX.Element[] = [];
 
     for (const id of orderedLayers) {
       const feats = featuresByLayer[id] ?? [];
-
-      // 🔹 Layer 5 (Curvas de Nível)
-    if (id === 5) {
-  const elems: JSX.Element[] = [];
-  for (const f of feats) {
-    const attrs = f.attributes || {};
-    const tipo = String(attrs.tipocurvanivel || "").toLowerCase(); // ✅ Correção aqui
-    const stroke =
-      tipo === "mestra" ? "#000" : tipo === "normal" ? "#ba6b21" : "#af9b87";
-    const strokeWidth = tipo === "mestra" ? 1.2 : 0.6;
-    const d = pathsFromPolyline(f.geometry as EsriPolyline, toXY);
-    elems.push(
-      <path
-        key={`line-5-${elems.length}`}
-        d={d}
-        fill="none"
-        stroke={stroke}
-        strokeWidth={strokeWidth}
-      />
-    );
-  }
-  groups.push(<g key="layer-5">{elems}</g>);
-  continue;
-}
-
       const style = layerStyle[id] ?? {};
       const elems: JSX.Element[] = [];
 
-      for (const f of feats) {
-        if (!f.geometry) continue;
-        if ((f.geometry as EsriPolygon).rings) {
-          const rings = f.geometry as EsriPolygon;
-          const d = rings.rings
-            .map((r) => {
-              const [x0, y0] = toXY(r[0][0], r[0][1]);
-              let path = `M ${x0.toFixed(2)} ${y0.toFixed(2)}`;
-              for (let i = 1; i < r.length; i++) {
-                const [x, y] = toXY(r[i][0], r[i][1]);
-                path += ` L ${x.toFixed(2)} ${y.toFixed(2)}`;
-              }
-              return path + " Z";
-            })
-            .join(" ");
-          elems.push(
-            <path
-              key={`poly-${id}-${elems.length}`}
-              d={d}
-              fill={style.fill}
-              fillOpacity={style.fillOpacity ?? 1}
-              stroke={style.stroke}
-              strokeWidth={style.strokeWidth ?? 0}
-              strokeDasharray={style.strokeDasharray}
-            />
-          );
-        } else if ((f.geometry as EsriPolyline).paths) {
-          const d = pathsFromPolyline(f.geometry as EsriPolyline, toXY);
-          elems.push(
-            <path
-              key={`line-${id}-${elems.length}`}
-              d={d}
-              fill="none"
-              stroke={style.stroke}
-              strokeWidth={style.strokeWidth ?? 0.8}
-              strokeDasharray={style.strokeDasharray}
-            />
-          );
-        } else if ((f.geometry as EsriPoint).x) {
-          const { x, y } = f.geometry as EsriPoint;
-          const [sx, sy] = toXY(x, y);
-          elems.push(<circle key={`pt-${id}-${elems.length}`} cx={sx} cy={sy} r={2} fill="#004d00" />);
+      if (id === 5) {
+        // curvas
+        for (const f of feats) {
+          const attrs = f.attributes || {};
+          const tipo = String(attrs.tipocurvanivel || "");
+          const stroke =
+            tipo === "Mestra" ? "#000" : tipo === "Normal" ? "#ba6b21" : "#af9b87";
+          const strokeWidth = tipo === "Mestra" ? 1.2 : 0.6;
+          if ((f.geometry as EsriPolyline)?.paths) {
+            const d = pathsFromPolyline(f.geometry as EsriPolyline, toXY);
+            elems.push(<path key={`line-5-${elems.length}`} d={d} fill="none" stroke={stroke} strokeWidth={strokeWidth} />);
+          }
+        }
+      } else {
+        for (const f of feats) {
+          if (!f.geometry) continue;
+
+          if ((f.geometry as EsriPolygon).rings) {
+            const rings = (f.geometry as EsriPolygon).rings;
+            const d = rings
+              .map((r) => {
+                if (!r.length) return "";
+                const [x0, y0] = toXY(r[0][0], r[0][1]);
+                let path = `M ${x0.toFixed(2)} ${y0.toFixed(2)}`;
+                for (let i = 1; i < r.length; i++) {
+                  const [x, y] = toXY(r[i][0], r[i][1]);
+                  path += ` L ${x.toFixed(2)} ${y.toFixed(2)}`;
+                }
+                return path + " Z";
+              })
+              .join(" ");
+            elems.push(
+              <path
+                key={`poly-${id}-${elems.length}`}
+                d={d}
+                fill={style.fill}
+                fillOpacity={style.fillOpacity ?? 1}
+                stroke={style.stroke}
+                strokeWidth={style.strokeWidth ?? 0}
+                strokeDasharray={style.strokeDasharray}
+              />
+            );
+          } else if ((f.geometry as EsriPolyline).paths) {
+            const d = pathsFromPolyline(f.geometry as EsriPolyline, toXY);
+            elems.push(
+              <path
+                key={`line-${id}-${elems.length}`}
+                d={d}
+                fill="none"
+                stroke={style.stroke}
+                strokeWidth={style.strokeWidth ?? 0.8}
+                strokeDasharray={style.strokeDasharray}
+              />
+            );
+          } else if ((f.geometry as EsriPoint).x) {
+            const { x, y } = f.geometry as EsriPoint;
+            const [sx, sy] = toXY(x, y);
+            const pointFill = id === 65 ? "#004d00" : style.fill ?? "#004d00";
+            elems.push(<circle key={`pt-${id}-${elems.length}`} cx={sx} cy={sy} r={10} fill={pointFill} fillOpacity={0.5} />);
+          }
         }
       }
 
-      groups.push(<g key={`layer-${id}`}>{elems}</g>);
+      layerGroups.push(
+        <g id={`layer-${id}`} key={`layer-${id}`} data-layer={id}>
+          {elems}
+        </g>
+      );
     }
 
     return (
       <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height}>
+        <defs>
+          <clipPath id="mapClip">
+            <rect x="0" y="0" width={width} height={height} />
+          </clipPath>
+        </defs>
+
         <rect x={0} y={0} width={width} height={height} fill="white" />
-        {groups}
+        <g clipPath="url(#mapClip)">{layerGroups}</g>
         <rect x={0} y={0} width={width} height={height} fill="none" stroke="#000" strokeWidth={2} />
       </svg>
     );
