@@ -1,5 +1,5 @@
 "use client"
-
+import Link from "next/link";
 import * as React from "react"
 import {
   IconCamera,
@@ -36,18 +36,18 @@ import {
 const data = {
   user: {
     name: "Devlound",
-    email: "m@example.com",
+    email: "ELS@VIBECODE.com",
     avatar: "/icon2.png",
   },
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "./",
       icon: IconDashboard,
     },
     {
-      title: "WIP",
-      url: "#",
+      title: "Zoneamento",
+      url: "/zoneamento",
       icon: IconListDetails,
     },
     {

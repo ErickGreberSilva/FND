@@ -124,7 +124,13 @@
     @apply bg-background text-foreground;
   }
 }
-
+html, body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga", "kern";
+  font-kerning: normal;
+}
 .customshadow {
   box-shadow: 0px 0px 7px 0px grey;
 }
@@ -427,3 +433,5 @@ table.ptable tr {
 
 .leaflet-control-geocoder-icon { background-color: var(--leaflet-bg) !important;
   color: var(--leaflet-color) !important;}
+
+  .valign-top {vertical-align: top; }

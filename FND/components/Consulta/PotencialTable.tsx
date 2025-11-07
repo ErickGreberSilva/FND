@@ -178,15 +178,15 @@ export default function ResultadoLote() {
   return (
     <div className="space-y-6">
       <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
-        <div className="px-4 py-1 font-semibold border-b rounded-lg text-lg bg-primary">
+        <div className="lato-regular px-4 py-1 font-semibold border-b rounded-lg text-lg bg-primary">
           Dados Básicos
         </div>
-        <div className="flex flex-row justify-around items-center content-center p-4 text-base">
-          <div className="flex flex-wrap gap-x-6 gap-y-2">
+        <div className=" lato-regular flex flex-row justify-around items-center content-center p-4 text-base">
+          <div className="lato-regular flex flex-wrap gap-x-6 gap-y-2">
             {Object.entries(dados.basico).map(([campo, valor]) => (
               <div
                 key={campo}
-                className="flex justify-around items-center text-[15px]"
+                className="lato-regular flex justify-around items-center text-[15px]"
               >
                 <span className="font-medium text-muted-foreground">
                   {campo}:
@@ -216,12 +216,12 @@ function SeccaoTabela({
 }) {
   return (
     <>
-      <div className="px-4 py-3 font-semibold border-b text-lg text-primary ">
+      <div className="lato-regular px-4 py-3 font-semibold border-b text-lg text-primary ">
         {titulo}
       </div>
       <div className="overflow-hidden rounded-lg border">
-        <div className="relative w-full overflow-x-auto">
-          <Table className="w-full caption-bottom text-sm">
+        <div className="lato-regular relative w-full overflow-x-auto">
+          <Table className="lato-regular w-full caption-bottom text-sm">
             <TableHeader className="bg-muted/50">
               <TableRow>
                 <TableHead className="[&_tr]:border-b bg-muted sticky top-0 z-10">
@@ -238,10 +238,10 @@ function SeccaoTabela({
                   key={i}
                   className="hover:bg-accent/30 transition-colors data-[state=selected]:bg-muted"
                 >
-                  <TableCell className="font-medium py-2.5 pl-4 text-sm text-foreground">
+                  <TableCell className="lato-regular font-medium py-2.5 pl-4 text-sm text-foreground">
                     {campo}
                   </TableCell>
-                  <TableCell className="py-2.5 pr-4 text-sm text-foreground">
+                  <TableCell className="lato-regular py-2.5 pr-4 text-sm text-foreground">
                     {valor != null ? (
                       typeof valor === "string" || typeof valor === "number" ? (
                         String(valor)
@@ -249,7 +249,7 @@ function SeccaoTabela({
                         valor
                       )
                     ) : (
-                      <span className="text-muted-foreground">—</span>
+                      <span className="lato-regular text-muted-foreground">—</span>
                     )}
                   </TableCell>
                 </TableRow>

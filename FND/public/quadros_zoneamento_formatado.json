@@ -1,0 +1,3420 @@
+{
+  "QUADRO_I": {
+    "titulo": "QUADRO I - EIXO ESTRUTURAL - EE / VIA CENTRAL",
+    "idTabela": "quadro-i",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1) (8)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "10",
+        "25 (2)",
+        "Embasamento: H/6 a partir do embasamento, mín. 2,50 m",
+        "15x450"
+      ],
+      [
+        "Habitação Coletiva (3)",
+        "",
+        "4 (4) (7)",
+        "Livre",
+        "Livre",
+        "Térreo e 2º pav. = 100%. Demais = 50% (5)",
+        "(3)",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Institucional (3)",
+        "",
+        "4 (4) (7)",
+        "Livre",
+        "Livre",
+        "Térreo e 2º pav. = 100%. Demais = 50% (5)",
+        "(3)",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1 (3)",
+        "",
+        "4 (4) (7)",
+        "Livre",
+        "Livre",
+        "Térreo e 2º pav. = 100%. Demais = 50% (5)",
+        "(3)",
+        "(2)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comércio e Serviço Vicinal (8)",
+        "",
+        "2",
+        "2",
+        "200",
+        "50",
+        "10",
+        "25 (2)",
+        "Embasamento: H/6 a partir do embasamento, mín. 2,50 m",
+        "-"
+      ],
+      [
+        "Comunitário 1 e 2 (3)",
+        "Comunitário 3 (3)",
+        "4 (7)",
+        "Livre",
+        "Livre",
+        "Térreo e 2º pav. = 100%. Demais = 50% (5)",
+        "(3)",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal, de Bairro e Setorial (3)",
+        "",
+        "4 (7)",
+        "Livre",
+        "Livre",
+        "Térreo e 2º pav. = 100%. Demais = 50% (5)",
+        "(3)",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria do Tipo 1 (6)",
+        "",
+        "-",
+        "-",
+        "200",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Uma habitação unifamiliar por lote.",
+      "Atender regulamentação específica.",
+      "Deverá ser implantado o Plano Massa conforme regulamentação específica.",
+      "Nos terrenos situados no Eixo Estrutural Norte e Sul, será limitado a 3 (três) o coeficiente de aproveitamento para o uso exclusivamente habitacional.",
+      "Nos terrenos onde houver limitação de altura, poderá ser ampliada a taxa de ocupação.",
+      "Somente alvará de licença para localização em edificação existente.",
+      "Para as edificações de uso misto o coeficiente será igual a 4 (quatro).",
+      "Para edificação de uma habitação unifamiliar e/ou um comércio vicinal até 200 m² sem implantação do Plano Massa, a edificação deverá atender no quadro acima."
+    ]
+  },
+  "QUADRO_II": {
+    "titulo": "QUADRO II - EIXO ESTRUTURAL - EE / VIAS EXTERNAS",
+    "idTabela": "quadro-ii",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "10",
+        "25 (2)",
+        "Até 2 pav.= facultado. Acima de 2 pav.= H/6, contado do térreo, atendido o mínimo de 2,50 m.",
+        "15x450"
+      ],
+      [
+        "Habitação Coletiva (3)",
+        "",
+        "4 (4) (7)",
+        "Livre",
+        "-",
+        "Subsolo, Térreo e 2º pavimento =100%. Demais pavimentos = 50% (5) (8)",
+        "10 (3)",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Institucional (3)",
+        "",
+        "4 (4) (7)",
+        "Livre",
+        "-",
+        "Subsolo, Térreo e 2º pavimento =100%. Demais pavimentos = 50% (5) (8)",
+        "10 (3)",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1 (3)",
+        "",
+        "4 (4) (7)",
+        "Livre",
+        "-",
+        "Subsolo, Térreo e 2º pavimento =100%. Demais pavimentos = 50% (5) (8)",
+        "10 (3)",
+        "(2)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 e 2 (3)",
+        "Comunitário 3 (3)",
+        "1 (7)",
+        "2",
+        "-",
+        "Subsolo, Térreo e 2º pavimento =100%. Demais pavimentos = 50% (5) (8)",
+        "10 (3)",
+        "(2)",
+        "Até 2 pav.= facultado. Acima de 2 pav.= H/6, contado do térreo, atendido o mínimo de 2,50 m.",
+        "-"
+      ],
+      [
+        "Comercio e Serviço Vicinal, de Bairro e Setorial (3)",
+        "",
+        "1 (7)",
+        "2",
+        "-",
+        "Subsolo, Térreo e 2º pavimento =100%. Demais pavimentos = 50% (5) (8)",
+        "10 (3)",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Posto de Abastecimento (2) (3)",
+        "",
+        "1 (7)",
+        "2",
+        "-",
+        "Subsolo, Térreo e 2º pavimento =100%. Demais pavimentos = 50% (5) (8)",
+        "10 (3)",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Edifício Garagem (3)",
+        "",
+        "1 (7)",
+        "2",
+        "-",
+        "Subsolo, Térreo e 2º pavimento =100%. Demais pavimentos = 50% (5) (8)",
+        "10 (3)",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria do Tipo 1 (6)",
+        "",
+        "-",
+        "-",
+        "200",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Uma habitação unifamiliar por lote.",
+      "Atender regulamentação específica.",
+      "Deverá ser implantada a via local.",
+      "Nos terrenos situados no Eixo Estrutural Norte e Sul, será limitado a 3 (três) o coeficiente de aproveitamento para o uso exclusivamente habitacional.",
+      "Nos terrenos onde houver limitação de altura, poderá ser ampliada a taxa de ocupação.",
+      "Somente alvará de licença para localização em edificação existente.",
+      "Para as edificações de uso misto, o coeficiente de aproveitamento do uso não habitacional poderá ser somado ao coeficiente do uso habitacional.",
+      "Quando a área correspondente a via local for transferida à domínio público e a sua implantação for de responsabilidade do proprietário e/ou empreendedor, será admitido a taxa de ocupação de 100% para o lote remanescente."
+    ]
+  },
+  "QUADRO_III": {
+    "titulo": "QUADRO III - EIXO ESTRUTURAL - EE / OUTRAS VIAS",
+    "idTabela": "quadro-iii",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "15x450"
+      ],
+      [
+        "Habitação Coletiva",
+        "",
+        "4 (3)",
+        "Livre",
+        "-",
+        "Subsolo, Térreo, 2º pav. =75%. Demais pav. = 50% (4)",
+        "5",
+        "(2)",
+        "Até 2 pav.= facultado. Acima de 2 pav. = H/6 contado do térreo, atendido o mínimo de 2,50 m.",
+        "-"
+      ],
+      [
+        "Habitação Institucional",
+        "",
+        "4 (3)",
+        "Livre",
+        "-",
+        "Subsolo, Térreo, 2º pav. =75%. Demais pav. = 50% (4)",
+        "5",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1",
+        "",
+        "4 (3)",
+        "Livre",
+        "-",
+        "Subsolo, Térreo, 2º pav. =75%. Demais pav. = 50% (4)",
+        "5",
+        "(2)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 e 2",
+        "Comunitário 3",
+        "4 (6)",
+        "Livre",
+        "-",
+        "Subsolo, Térreo, 2º pav. = 75%. Demais pav. = 50% (4)",
+        "5",
+        "(2)",
+        "Até 2 pav.= facultado. Acima de 2 pav. = H/6 contado do térreo, atendido o mínimo de 2,50 m.",
+        "-"
+      ],
+      [
+        "Comercio e Serviço Vicinal, de Bairro e Setorial",
+        "",
+        "4 (6)",
+        "Livre",
+        "-",
+        "Subsolo, Térreo, 2º pav. = 75%. Demais pav. = 50% (4)",
+        "5",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Edifício Garagem",
+        "",
+        "4 (6)",
+        "Livre",
+        "-",
+        "Subsolo, Térreo, 2º pav. = 75%. Demais pav. = 50% (4)",
+        "5",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Posto de Abastecimento (2)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria do Tipo 1 (5)",
+        "",
+        "-",
+        "-",
+        "200",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Uma habitação unifamiliar por lote.",
+      "Atender regulamentação específica.",
+      "Nos terrenos situados no Eixo Estrutural Norte e Sul, será limitado a 3 (três) o coeficiente de aproveitamento para o uso exclusivamente habitacional.",
+      "Nos terrenos onde houver limitação de altura, poderá, a critério do CMU, ser ampliada a taxa de ocupação.",
+      "Somente alvará de licença para localização em edificação existente.",
+      "Para as edificações de uso misto o coeficiente de aproveitamento será igual a 4 (quatro)."
+    ]
+  },
+  "QUADRO_IV": {
+    "titulo": "QUADRO IV - EIXO NOVA CURITIBA - ENC / VIA CENTRAL E OUTRAS VIAS",
+    "idTabela": "quadro-iv",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "10",
+        "25 (2)",
+        "Até 2 pav.: facultado. Acima de 2 pav.: h/5 contado do térreo, atendido o mínimo de 2,5 m.",
+        "15x450"
+      ],
+      [
+        "Habitação coletiva",
+        "",
+        "2 (3)",
+        "Livre",
+        "-",
+        "Subsolo: 60%. Térreo e demais pav.: 50%.",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Institucional",
+        "",
+        "2 (3)",
+        "Livre",
+        "-",
+        "Subsolo: 60%. Térreo e demais pav.: 50%.",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1",
+        "",
+        "2 (3)",
+        "Livre",
+        "-",
+        "Subsolo: 60%. Térreo e demais pav.: 50%.",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comércio e Serviço Vicinal, de Bairro e Setorial",
+        "Comunitário 3",
+        "2",
+        "Livre",
+        "-",
+        "Subsolo: 60%. Térreo e demais pav.: 50%.",
+        "5",
+        "25 (2)",
+        "Até 2 pav.: facultado. Acima de 2 pav.: h/5 contado do térreo, atendido o mínimo de 2,5 m.",
+        "-"
+      ],
+      [
+        "Comunitário 1 e 2",
+        "",
+        "2",
+        "Livre",
+        "-",
+        "Subsolo: 60%. Térreo e demais pav.: 50%.",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Posto de Abastecimento (2) (4)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50%",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria do Tipo 1 (5)",
+        "",
+        "-",
+        "-",
+        "200",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Uma habitação unifamiliar por lote.",
+      "Atender regulamentação específica.",
+      "Para habitação coletiva, poderá ser acrescido no máximo 1,0 coeficiente, desde que a densidade seja igual ou superior a 200 (duzentas) habitações por hectare.",
+      "Proibido na via central.",
+      "Somente alvará de licença para localização em edificação existente.",
+      "Nos terrenos com testada para a Via Central, nas edificações de uso misto, o coeficiente de aproveitamento poderá ser 3 (três), desde que utilizem no mínimo coeficiente 0,5 (meio) para atividades comerciais e de prestação de serviços."
+    ]
+  },
+  "QUADRO_V": {
+    "titulo": "QUADRO V - EIXO NOVA CURITIBA - ENC / VIAS EXTERNAS",
+    "idTabela": "quadro-v",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "10",
+        "25 (2)",
+        "Até 2 pav.: facultado. Acima de 2 pav.: H/5 contado do térreo, atendido o mínimo de 2,5 m.",
+        "15x450"
+      ],
+      [
+        "Habitação coletiva (3)",
+        "",
+        "2 (4)",
+        "Livre",
+        "-",
+        "Subsolo: 60%. Térreo e demais pav.: 50%.",
+        "10 (3)",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Institucional (3)",
+        "",
+        "2 (4)",
+        "Livre",
+        "-",
+        "Subsolo: 60%. Térreo e demais pav.: 50%.",
+        "10 (3)",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1 (3)",
+        "",
+        "2 (4)",
+        "Livre",
+        "-",
+        "Subsolo: 60%. Térreo e demais pav.: 50%.",
+        "10 (3)",
+        "25 (2)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comércio e Serviço Vicinal, de Bairro e Setorial (3)",
+        "Comunitário 1, 2 e 3 (3)",
+        "1",
+        "Livre",
+        "-",
+        "Subsolo: 60%. Térreo e demais pav.: 50%.",
+        "10 (3)",
+        "25 (2)",
+        "Até 2 pav.= facultado. Acima de 2 pav. H/5 contado do térreo, atendido o mínimo de 2,5 m.",
+        "-"
+      ],
+      [
+        "Posto de Abastecimento (2) (3)",
+        "",
+        "1",
+        "2",
+        "-",
+        "Subsolo: 60%. Térreo e demais pav.: 50%.",
+        "10 (3)",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria do Tipo 1 (5)",
+        "",
+        "-",
+        "-",
+        "200",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Uma habitação unifamiliar por lote.",
+      "Atender regulamentação específica.",
+      "Desde que implantada a via local.",
+      "Para habitação coletiva poderá ser acrescido no máximo 1,0 coeficiente desde que a densidade seja igual ou superior a 200 (duzentas) habitações/hectare.",
+      "Somente alvará de licença para localização em edificação existente."
+    ]
+  },
+  "QUADRO_VI": {
+    "titulo": "QUADRO VI - EIXO MARECHAL FLORIANO PEIXOTO - EMF / VIA CENTRAL / OUTRAS VIAS",
+    "idTabela": "quadro-vi",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "15x450"
+      ],
+      [
+        "Habitação Coletiva",
+        "",
+        "1",
+        "4",
+        "-",
+        "Subsolo, térreo e 2º pav.: 75%. Demais pav.:50%",
+        "5 (3)",
+        "(2)",
+        "Até 2 pav. facultado. Acima de 2 pav.= H/6 contado do embasamento, atendido o mínimo de 2,5 m.",
+        "-"
+      ],
+      [
+        "Habitação Institucional",
+        "",
+        "1",
+        "4",
+        "-",
+        "Subsolo, térreo e 2º pav.: 75%. Demais pav.:50%",
+        "5 (3)",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1",
+        "",
+        "1",
+        "4",
+        "-",
+        "Subsolo, térreo e 2º pav.: 75%. Demais pav.:50%",
+        "5 (3)",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Empreendimento inclusivo de habitação de interesse social (2)",
+        "",
+        "1",
+        "4",
+        "-",
+        "Subsolo, térreo e 2º pav.: 75%. Demais pav.:50%",
+        "5 (3)",
+        "(2)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 e 2",
+        "Comunitário 3",
+        "1",
+        "4",
+        "-",
+        "Subsolo, térreo e 2º pav.: 75%. Demais pav.:50%",
+        "5 (3)",
+        "(2)",
+        "Até 2 pav. facultado. Acima de 2 pav.= H/6 contado do embasamento, atendido o mínimo de 2,5 m.",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal, de Bairro e Setorial",
+        "",
+        "1",
+        "4",
+        "-",
+        "Subsolo, térreo e 2º pav.: 75%. Demais pav.:50%",
+        "5 (3)",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Posto de Abastecimento e Serviço (2)",
+        "",
+        "1",
+        "2",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria do Tipo 1 (4)",
+        "",
+        "-",
+        "-",
+        "400",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Uma habitação unifamiliar por lote.",
+      "Atender regulamentação específica.",
+      "Nos terrenos com frente para a Av. Mal. Floriano Peixoto é permitido padrão alinhamento, sendo proibido balanço sobre o passeio, permitida marquise com 1,20 m.",
+      "Somente alvará de licença para localização em edificação existente. Para porte superior deverá ser ouvido o Conselho Municipal do Urbanismo - CMU."
+    ]
+  },
+  "QUADRO_VII": {
+    "titulo": "QUADRO VII - EIXO PRESIDENTE AFFONSO CAMARGO - EAC / VIA CENTRAL",
+    "idTabela": "quadro-vii",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "15x450"
+      ],
+      [
+        "Habitação Coletiva",
+        "",
+        "1,5",
+        "4",
+        "-",
+        "Subsolo, Térreo e 2º pav.: 75%. Demais pav.: 50%",
+        "5",
+        "(2)",
+        "Até 2 pav.: facultado. Acima de 2 pav.: H/6 a partir do embasamento, atendido o mínimo de 2,5 m.",
+        "-"
+      ],
+      [
+        "Habitação Institucional",
+        "",
+        "1,5",
+        "4",
+        "-",
+        "Subsolo, Térreo e 2º pav.: 75%. Demais pav.: 50%",
+        "5",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1",
+        "",
+        "1,5",
+        "4",
+        "-",
+        "Subsolo, Térreo e 2º pav.: 75%. Demais pav.: 50%",
+        "5",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Empreendimento inclusivo de habitação de interesse social (2)",
+        "",
+        "1,5",
+        "4",
+        "-",
+        "Subsolo, Térreo e 2º pav.: 75%. Demais pav.: 50%",
+        "5",
+        "(2)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 e 2",
+        "Comunitário 3",
+        "1",
+        "4",
+        "-",
+        "Subsolo, Térreo e 2º pav.: 75%. Demais pav.: 50%",
+        "5",
+        "(2)",
+        "Até 2 pav.: facultado. Acima de 2 pav.: H/6 a partir do embasamento, atendido o mínimo de 2,5 m.",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal, de Bairro e Setorial",
+        "",
+        "1",
+        "4",
+        "-",
+        "Subsolo, Térreo e 2º pav.: 75%. Demais pav.: 50%",
+        "5",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Posto de Abastecimento (2)",
+        "",
+        "1",
+        "2",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria do Tipo 1 (3)",
+        "",
+        "-",
+        "-",
+        "400",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Uma habitação unifamiliar por lote.",
+      "Atender regulamentação específica.",
+      "Somente alvará de licença para localização em edificação existente. Para porte superior deverá ser ouvido o Conselho Municipal do Urbanismo - CMU."
+    ]
+  },
+  "QUADRO_VIII": {
+    "titulo": "QUADRO VIII - EIXO PRESIDENTE AFFONSO CAMARGO - EAC / OUTRAS VIAS",
+    "idTabela": "quadro-viii",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "15x450"
+      ],
+      [
+        "Habitação Coletiva",
+        "",
+        "1,5",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "Até 2 pav.: facultado. Acima de 2 pav.: H/6 contado do térreo, atendido o mínimo de 2,5 m.",
+        "-"
+      ],
+      [
+        "Habitação Institucional",
+        "",
+        "1,5",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1",
+        "",
+        "1,5",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 e 2",
+        "Comunitário 3",
+        "1,5",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "Até 2 pav.: facultado. Acima de 2 pav.: H/6 contado do térreo, atendido o mínimo de 2,5 m.",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal, de Bairro e Setorial",
+        "",
+        "1,5",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Posto de Abastecimento (2)",
+        "",
+        "1",
+        "2",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria do Tipo 1 (3)",
+        "",
+        "-",
+        "-",
+        "400",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Uma habitação unifamiliar por lote.",
+      "Atender regulamentação específica.",
+      "Somente alvará de licença para localização em edificação existente."
+    ]
+  },
+  "QUADRO_X": {
+    "titulo": "QUADRO X - EIXO DE ADENSAMENTO COMENDADOR FRANCO – EACF",
+    "idTabela": "quadro-x",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "15x450"
+      ],
+      [
+        "Habitação Coletiva, Institucional, Transitória 1, Empreendimento Inclusivo (2)",
+        "",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5 (3)(4)",
+        "25 (2)",
+        "Até 2 pav.: facultado. Acima de 2 pav.: H/6 contado do térreo, atendido o mínimo de 2,5 m.",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 e 2",
+        "Comunitário 3",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5 (3)(4)",
+        "25 (2)",
+        "Até 2 pav.: facultado. Acima de 2 pav.: H/6 contado do térreo, atendido o mínimo de 2,5 m.",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal, de Bairro e Setorial",
+        "",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5 (3)(4)",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Posto de Abastecimento (2)",
+        "",
+        "1",
+        "2",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria do Tipo 1 (5)",
+        "",
+        "-",
+        "-",
+        "400",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Para terrenos na Av. Comendador Franco, apenas uma habitação unifamiliar por lote. Para outras vias, até 3.",
+      "Atender regulamentação específica.",
+      "Nos terrenos com testada para a Av. Comendador Franco é obrigatória a implantação da via local.",
+      "O novo alinhamento predial fica definido pelo projeto da via.",
+      "Somente alvará de licença para localização em edificação existente."
+    ]
+  },
+  "QUADRO_XI": {
+    "titulo": "QUADRO XI - EIXO DE ADENSAMENTO ENGENHEIRO COSTA BARROS – EACB",
+    "idTabela": "quadro-xi",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "15x450"
+      ],
+      [
+        "Habitação Coletiva, Institucional, Transitória 1, Empreendimento Inclusivo (2)",
+        "",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "Até 2 pav.: facultado. Acima de 2 pav.: H/6 contado do térreo, atendido o mínimo de 2,5 m.",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 e 2",
+        "Comunitário 3",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "Até 2 pav.: facultado. Acima de 2 pav.: H/6 contado do térreo, atendido o mínimo de 2,5 m.",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal, de Bairro e Setorial",
+        "",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Posto de Abastecimento (2)",
+        "",
+        "1",
+        "2",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria do Tipo 1 (3)",
+        "",
+        "-",
+        "-",
+        "400",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Uma habitação unifamiliar por lote.",
+      "Atender regulamentação específica.",
+      "Somente alvará de licença para localização em edificação existente."
+    ]
+  },
+  "QUADRO_XII": {
+    "titulo": "QUADRO XII - EIXOS CONECTORES OESTE 1, 2, 3 e 4",
+    "idTabela": "quadro-xii",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "15x450"
+      ],
+      [
+        "Habitação Unifamiliar em série (3), Coletiva, Institucional, Transitória 1, Empreendimento Inclusivo (2)",
+        "",
+        "1,5",
+        "4 (4)",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "Até 2 pav. Facultado. Acima de 2 pav.= H/6, contado a partir do térreo, atendido o mínimo de 2,50 m.",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 e 2",
+        "Comunitário 3",
+        "1,5",
+        "4 (4)",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "Até 2 pav. Facultado. Acima de 2 pav.= H/6, contado a partir do térreo, atendido o mínimo de 2,50 m.",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal, de Bairro e Setorial",
+        "",
+        "1,5",
+        "4 (4)",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Posto de Abastecimento (2)",
+        "",
+        "1",
+        "2",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria do Tipo 1 (5)",
+        "",
+        "-",
+        "-",
+        "400",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Até 3 (três) habitações unifamiliares por lote.",
+      "Atender legislação específica.",
+      "Somente transversais ao alinhamento predial.",
+      "Nos trechos lindeiros a ZR-4 a altura máxima será de 6 (seis) pavimentos.",
+      "Somente alvará de licença para localização em edificação existente."
+    ]
+  },
+  "QUADRO_XIII": {
+    "titulo": "QUADRO XIII - EIXOS CONECTORES LESTE 1, 2, 3",
+    "idTabela": "quadro-xiii",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "15x450"
+      ],
+      [
+        "Habitação Coletiva, Institucional, Transitória 1, Empreendimento Inclusivo (2)",
+        "",
+        "1,5",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "Até 2 pav. Facultado. Acima de 2 pav.= H/6 a partir do térreo, atendido o mínimo de 2,50 m.",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 e 2",
+        "Comunitário 3",
+        "1,5",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "Até 2 pav. Facultado. Acima de 2 pav.= H/6 a partir do térreo, atendido o mínimo de 2,50 m.",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal, de Bairro e Setorial",
+        "",
+        "1,5",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Posto de Abastecimento (2)",
+        "",
+        "1",
+        "2",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria do Tipo 1 (3)",
+        "",
+        "-",
+        "-",
+        "400",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Uma habitação unifamiliar por lote.",
+      "Atender regulamentação específica.",
+      "Somente alvará de licença para localização em edificação existente."
+    ]
+  },
+  "QUADRO_XIV": {
+    "titulo": "QUADRO XIV - EIXOS CONECTORES SUL 1 e 2",
+    "idTabela": "quadro-xiv",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "",
+        "1",
+        "3 (6)",
+        "-",
+        "60",
+        "3",
+        "25 (3)",
+        "-",
+        "12x360"
+      ],
+      [
+        "Habitação Unifamiliares em série (2)",
+        "",
+        "1",
+        "3 (6)",
+        "-",
+        "60",
+        "3",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Coletiva (3), Institucional, Empreendimento Inclusivo (3)",
+        "",
+        "1",
+        "4",
+        "-",
+        "50",
+        "3",
+        "25 (3)",
+        "2",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 e 2",
+        "Comunitário 3",
+        "1",
+        "4",
+        "-",
+        "50",
+        "3",
+        "25 (3)",
+        "2",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal, de Bairro e Setorial",
+        "",
+        "1",
+        "4",
+        "-",
+        "50",
+        "3",
+        "25 (3)",
+        "2",
+        "-"
+      ],
+      [
+        "Posto de Abastecimento (3) (5)",
+        "",
+        "1",
+        "2",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria do Tipo 1 (4)",
+        "",
+        "-",
+        "-",
+        "400",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Até 3 (três) habitações unifamiliares por lote de 360,00 m².",
+      "Somente transversais ao alinhamento predial.",
+      "Atender regulamentação específica.",
+      "Somente alvará de licença para localização em edificação existente.",
+      "Somente nas vias setoriais e coletoras.",
+      "Atendida a altura máxima de 10,00 m (dez metros)."
+    ]
+  },
+  "QUADRO_XV": {
+    "titulo": "QUADRO XV - ZONA RESIDENCIAL 1 - ZR1",
+    "idTabela": "quadro-xv",
+    "habitacionais": [
+      [
+        "Habitações Unifamiliares (1)",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "15x600"
+      ],
+      [
+        "Habitação Unifamiliar em Série (3)",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comércio e Serviço Vicinal (4)",
+        "-",
+        "-",
+        "100",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria Tipo 1 (5)",
+        "-",
+        "-",
+        "100",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Deverá ser obedecido o limite de uma habitação unifamiliar por fração de terreno de 300 (trezentos) m².",
+      "Atender regulamentação específica.",
+      "Somente em terrenos com dimensões inferiores a 20.000 m² (vinte mil metros quadrados) e garantida fração de terreno de no mínimo 300 (trezentos) m² por unidade habitacional, excluídas as áreas de uso comum.",
+      "Somente alvará de licença para localização em edificação existente.",
+      "Somente alvará de licença para localização em edificação existente, vinculada ao uso habitacional."
+    ]
+  },
+  "QUADRO_XVI": {
+    "titulo": "QUADRO XVI - ZONA RESIDENCIAL 2 - ZR2",
+    "idTabela": "quadro-xvi",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "1",
+        "2",
+        "-",
+        "50 (2)",
+        "5",
+        "25 (3)",
+        "-",
+        "12x360"
+      ],
+      [
+        "Habitação Unifamiliar em Série (1) (4)",
+        "1",
+        "2",
+        "-",
+        "50 (2)",
+        "5",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Institucional",
+        "1",
+        "2",
+        "-",
+        "50 (2)",
+        "5",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Empreendimento inclusivo de habitação de interesse social (3)",
+        "1",
+        "2",
+        "-",
+        "50 (2)",
+        "5",
+        "25 (3)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 (5)",
+        "1 (6)",
+        "2",
+        "200",
+        "50",
+        "5",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal e de Bairro (5)",
+        "1 (6)",
+        "2",
+        "200",
+        "50",
+        "5",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Comunitário 2 - Culto Religioso",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria Tipo 1 (7)",
+        "-",
+        "-",
+        "200",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Deverá ser obedecida a fração de terreno de no mínimo 120 (cento e vinte) m² por unidade habitacional.",
+      "No caso da área do lote ser inferior ao padrão de zoneamento, será admitida taxa de ocupação superior a 50% (cinquenta por cento), até o limite de 60% (sessenta por cento), calculada proporcionalmente à área do lote, exclusivamente para uma habitação unifamiliar.",
+      "Atender regulamentação específica.",
+      "Somente para lotes com dimensão inferior a 20.000 (vinte mil) m².",
+      "A critério do CMU poderá ser concedido alvará de localização para comércio e serviço vicinal, de bairro e comunitário 1, em edificações existentes e portes superior a 200 (duzentos) m² até o máximo de 400 (quatrocentos) m².",
+      "Desde que atendido o porte máximo de 200 (duzentos) m².",
+      "Somente alvará de licença para localização em edificação existente."
+    ]
+  },
+  "QUADRO_XVII": {
+    "titulo": "QUADRO XVII - ZONA RESIDENCIAL 3 - ZR3",
+    "idTabela": "quadro-xvii",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1) (2)",
+        "1",
+        "3 (4)",
+        "-",
+        "50 (2)",
+        "5",
+        "25 (3)",
+        "(5)",
+        "12x360"
+      ],
+      [
+        "Habitação Unifamiliar em Série (1) (6)",
+        "1",
+        "3 (4)",
+        "-",
+        "50 (2)",
+        "5",
+        "25 (3)",
+        "(5)",
+        "-"
+      ],
+      [
+        "Habitação Coletiva (6)",
+        "1",
+        "3 (4)",
+        "-",
+        "50 (2)",
+        "5",
+        "25 (3)",
+        "(5)",
+        "-"
+      ],
+      [
+        "Habitação Institucional",
+        "1",
+        "3 (4)",
+        "-",
+        "50 (2)",
+        "5",
+        "25 (3)",
+        "(5)",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1 (7)",
+        "1",
+        "3 (4)",
+        "-",
+        "50 (2)",
+        "5",
+        "25 (3)",
+        "(5)",
+        "-"
+      ],
+      [
+        "Empreendimento inclusivo de habitação de interesse social (3)",
+        "1",
+        "3 (4)",
+        "-",
+        "50 (2)",
+        "5",
+        "25 (3)",
+        "(5)",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1- (8)",
+        "1 (9)",
+        "2",
+        "200",
+        "50",
+        "5",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Comunitário 2 - Saúde",
+        "1 (9)",
+        "2",
+        "200",
+        "50",
+        "5",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal e de Bairro (8)",
+        "1 (9)",
+        "2",
+        "200",
+        "50",
+        "5",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Comunitário 2 - Culto Religioso",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria do Tipo 1 (10)",
+        "-",
+        "-",
+        "200",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Deverá ser obedecida a fração de terreno de no mínimo 120 (cento e vinte) m² por unidade habitacional.",
+      "No caso da área do lote ser inferior ao padrão de zoneamento, será admitida taxa de ocupação superior a 50%, até o limite de 60%, calculada proporcionalmente à área do lote, exclusivamente para uma habitação unifamiliar.",
+      "Atender regulamentação específica.",
+      "Até 3 (três) pavimentos com o máximo de 10 (dez) metros de altura, afastamento das divisas facultado.",
+      "Para habitação institucional o afastamento mínimo das divisas deve ser igual a 2,50 m (dois metros e cinquenta centímetros).",
+      "Somente em terrenos com dimensão inferior a 20.000 m² (vinte mil metros quadrados).",
+      "Habitação Transitória somente Apart-hotel, sem centro de convenções. Serão admitidas atividades comercio e Serviço Vicinal e de Bairro no porte da zona em conjunto com a Habitação Transitória 1.",
+      "A critério do CMU, poderá ser concedido alvará de licença para localização para Comércio e Serviço Vicinal, de Bairro e Comunitário 1, em edificações existentes e porte superior a 200 (duzentos) m², até o máximo de 400 (quatrocentos) m².",
+      "Atendido o porte máximo de 200 (duzentos) m².",
+      "Somente alvará de licença para localização em edificação existente."
+    ]
+  },
+  "QUADRO_XVIII": {
+    "titulo": "QUADRO XVIII - ZONA RESIDENCIAL 3 TRANSIÇÃO - ZR3-T",
+    "idTabela": "quadro-xviii",
+    "habitacionais": [
+      [
+        "Habitações Unifamiliares (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (3)",
+        "Até 2 pav. = Facultado. Acima de 2 pav. = H/6, contado a partir do Térreo, atendido o mínimo de 2,50 m.",
+        "15x450"
+      ],
+      [
+        "Habitação Coletiva",
+        "",
+        "1",
+        "4 (2)",
+        "-",
+        "50",
+        "5",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Institucional",
+        "",
+        "1",
+        "4 (2)",
+        "-",
+        "50",
+        "5",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1",
+        "",
+        "1",
+        "4 (2)",
+        "-",
+        "50",
+        "5",
+        "25 (3)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 (6)",
+        "(4)",
+        "1 (5)",
+        "2",
+        "200",
+        "50",
+        "5",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Edifício de escritórios e Sede Administrativa",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal e de Bairro (6)",
+        "",
+        "1 (5)",
+        "2",
+        "200",
+        "50",
+        "5",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Comunitário 2 - Culto Religioso e Saúde",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Comunitário 2 - Ensino",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria do Tipo 1 (7)",
+        "",
+        "-",
+        "-",
+        "200",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Admitido até 3 (três) habitações unifamiliares por lote.",
+      "Nos terrenos com testada para as vias externas do Eixo Estrutural e Eixo Nova Curitiba, até a profundidade de 100 (cem) metros será admitido até 6 (seis) pavimentos.",
+      "Atender regulamentação específica.",
+      "Para os usos não habitacionais com testada para a via externa, deverão ser atendidas as condições estabelecidas para a via externa do Eixo Nova Curitiba conforme Art. 42.",
+      "Atendido o parâmetro entre coeficiente e porte que for atingido em primeiro lugar.",
+      "A critério do CMU poderá ser concedido alvará de licença para localização para comércio e serviço de bairro, comunitário 1 e comunitário 2 Saúde, em edificações existentes e portes superior a 200 (duzentos) m², até o máximo de 400 (quatrocentos) m².",
+      "Somente alvará de licença para localização em edificação existente."
+    ]
+  },
+  "QUADRO_XIX": {
+    "titulo": "QUADRO XIX - ZONA RESIDENCIAL 4 - ZR4",
+    "idTabela": "quadro-xix",
+    "habitacionais": [
+      [
+        "Habitações Unifamiliares (1)",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "15x450"
+      ],
+      [
+        "Habitação Unifamiliar em Série (1) (3)",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Coletiva",
+        "2",
+        "6",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "Até 2 pav. = Facultado. Acima de 2 pav. = H/6, atendido o mínimo de 2,50 m.",
+        "-"
+      ],
+      [
+        "Habitação Institucional",
+        "2",
+        "6",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1 (4)",
+        "2",
+        "6",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 (5)",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Comunitário 2 - Saúde (5)",
+        "1 (6)",
+        "2",
+        "200 (6)",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal e de Bairro (5)",
+        "1 (6)",
+        "2",
+        "200 (6)",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Comunitário 2 - Culto Religioso",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Sede Administrativa",
+        "1",
+        "2",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria do Tipo 1 (7)",
+        "-",
+        "-",
+        "200",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Deverá ser obedecida a fração de terreno de no mínimo 120 (cento e vinte) m² por unidade habitacional.",
+      "Atendida regulamentação específica.",
+      "Somente para lotes com área inferior a 20.000 (vinte mil) m².",
+      "Sem centro de convenções. Serão admitidas atividades comerciais e prestação de serviços de bairro no porte da zona em conjunto com a Habitação Transitória 1.",
+      "A critério do Conselho Municipal do Urbanismo - CMU poderá ser concedido alvará de licença para localização para Comércio e Serviço Vicinal ou de Bairro, Comunitário 1 e Comunitário 2 - Saúde, em edificação existente e porte superior a 200 (duzentos) m² até o máximo de 400 (quatrocentos) m².",
+      "Atendido o parâmetro entre coeficiente e porte que for atingido em primeiro lugar.",
+      "Somente alvará de licença para localização em edificação existente."
+    ]
+  },
+  "QUADRO_XX": {
+    "titulo": "QUADRO XX - ZONA DE USO MISTO 1 - ZUM-1",
+    "idTabela": "quadro-xx",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "15x450"
+      ],
+      [
+        "Habitação Unifamiliar em série (3)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Coletiva (3)",
+        "",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "Até 2 pav. = Facultado. Acima de 2 pav. = H/6, atendido o mínimo de 2,50 m.",
+        "-"
+      ],
+      [
+        "Habitação Institucional",
+        "",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1",
+        "",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 e 2",
+        "Comunitário 3",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "Até 2 pav. = Facultado. Acima de 2 pav. = H/6, atendido o mínimo de 2,50 m.",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal, de Bairro e Setorial",
+        "",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Posto de Abastecimento (2)",
+        "",
+        "1",
+        "2",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria Tipo 1 (4)",
+        "",
+        "-",
+        "-",
+        "400",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Uma habitação unifamiliar por lote.",
+      "Atender regulamentação específica.",
+      "Para conjuntos habitacionais a área máxima do terreno deverá ser de até 20.000 m².",
+      "Somente alvará de licença para localização em edificação existente."
+    ]
+  },
+  "QUADRO_XXI": {
+    "titulo": "QUADRO XXI - ZONA RESIDENCIAL DE OCUPAÇÃO CONTROLADA 1 - ZROC-1 (Artigo 48)",
+    "idTabela": "quadro-xxi",
+    "habitacionais": [
+      [
+        "Habitações Unifamiliares (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "15x450"
+      ],
+      [
+        "Habitações Unifamiliares em série",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Coletiva (3)",
+        "",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "2,5",
+        "-"
+      ],
+      [
+        "Habitação Institucional",
+        "",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "2,5",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 (4)",
+        "Comunitário 2 - Saúde e Ensino",
+        "1 (5)",
+        "2",
+        "200 (5)",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal e de Bairro (4)",
+        "",
+        "1 (5)",
+        "2",
+        "200 (5)",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Comunitário 2 - Culto Religioso",
+        "",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria Tipo 1 (6)",
+        "",
+        "-",
+        "-",
+        "200",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Admitido até 3 (três) habitações unifamiliares por lote.",
+      "Atender regulamentação específica.",
+      "Para conjuntos habitacionais de habitações coletivas a área máxima do terreno deverá ser inferior a 20.000 (vinte mil) m².",
+      "A critério do CMU poderão ser concedidos alvarás para portes superiores a 200 m² até o máximo de 400 m².",
+      "Atendido o parâmetro entre coeficiente e porte que for atingido em primeiro lugar.",
+      "Somente alvará de licença para localização em edificação existente, anexa à moradia."
+    ]
+  },
+  "QUADRO_XXII": {
+    "titulo": "QUADRO XXII - ZONA RESIDENCIAL DE OCUPAÇÃO CONTROLADA 1 - ZROC-1",
+    "idTabela": "quadro-xxii",
+    "habitacionais": [
+      [
+        "Habitações Unifamiliares (1)",
+        "",
+        "0,4",
+        "2",
+        "-",
+        "30",
+        "5",
+        "50 (2)",
+        "-",
+        "20x2000"
+      ],
+      [
+        "Habitações Unifamiliares em série (1)",
+        "",
+        "0,4",
+        "2",
+        "-",
+        "30",
+        "5",
+        "50 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Institucional",
+        "",
+        "0,4",
+        "2",
+        "-",
+        "30",
+        "5",
+        "50 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1",
+        "",
+        "0,4",
+        "2",
+        "-",
+        "30",
+        "5",
+        "50 (2)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 e Comunitário 2 - Culto Religioso",
+        "Comunitário 2 - Saúde, Ensino e Lazer, e Comunitário 3",
+        "0,4",
+        "2",
+        "-",
+        "30",
+        "5",
+        "50 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal e de Bairro",
+        "",
+        "0,4 (3)",
+        "2",
+        "200 (3)",
+        "30",
+        "5",
+        "50 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria do Tipo 1 (4)",
+        "",
+        "-",
+        "-",
+        "200",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Densidade máxima de 5 (cinco) habitações por hectare.",
+      "Atender regulamentação específica.",
+      "Atendido o parâmetro entre coeficiente e porte o que for atingido em primeiro lugar.",
+      "Somente alvará de licença para localização em edificação existente."
+    ]
+  },
+  "QUADRO_XXIII": {
+    "titulo": "QUADRO XXIII - ZONA RESIDENCIAL DE OCUPAÇÃO CONTROLADA 1 - ZROC-1 VM",
+    "idTabela": "quadro-xxiii",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (2)",
+        "-",
+        "0,4",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (6)",
+        "-",
+        "15x450"
+      ],
+      [
+        "Habitação Coletiva (3) (4) (5)",
+        "-",
+        "0,4",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (6)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1",
+        "-",
+        "0,4",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (6)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 2 - Culto Religioso",
+        "Comunitário 2 e 3",
+        "0,4",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (6)",
+        "-",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal, de Bairro e Setorial",
+        "",
+        "0,4",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (6)",
+        "-",
+        "-"
+      ],
+      [
+        "Posto de Abastecimento e Serviços (6)",
+        "",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria Tipo 1 (7)",
+        "",
+        "-",
+        "-",
+        "200",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Desde que implantada a via marginal.",
+      "Densidade máxima de 5 (cinco) habitações por hectare.",
+      "Desde que com acesso para as demais vias.",
+      "Acesso pela via marginal somente para uso misto, com o pavimento térreo comercial com no mínimo 400 m².",
+      "Para conjuntos habitacionais a área máxima do terreno deverá ser inferior a 20.000 m².",
+      "Atender regulamentação específica.",
+      "Somente alvará de licença para localização em edificação existente."
+    ]
+  },
+  "QUADRO_XXIV": {
+    "titulo": "QUADRO XXIV - ZONA RESIDENCIAL DE OCUPAÇÃO INTEGRADA – ZROI",
+    "idTabela": "quadro-xxiv",
+    "habitacionais": [
+      [
+        "Habitações Unifamiliares (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "15x450"
+      ],
+      [
+        "Habitação Coletiva (3)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitações Unifamiliares em série (3)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Institucional",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 (4)",
+        "Comunitário 2 Saúde e Ensino",
+        "1",
+        "2",
+        "200 (6)",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal e de Bairro (4)",
+        "",
+        "1",
+        "2",
+        "200 (6)",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Comunitário 2 - Culto Religioso",
+        "",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria Tipo 1 (5)",
+        "",
+        "-",
+        "-",
+        "200",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Admitido até 3 (três) habitações unifamiliares por lote.",
+      "Atender regulamentação específica.",
+      "Para conjuntos habitacionais a área máxima do terreno deverá ser inferior a 20.000 m².",
+      "A critério do CMU, poderão ser concedidos alvarás para portes superiores a 200 m² até o máximo de 400 m².",
+      "Somente alvará de licença para localização em edificação existente, anexa à moradia.",
+      "Atendido o parâmetro entre coeficiente e porte que for atingido em primeiro lugar."
+    ]
+  },
+  "QUADRO_XXV": {
+    "titulo": "QUADRO XXV - ZONA DE USO MISTO 1 - ZUM-1",
+    "idTabela": "quadro-xxv",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "15x450"
+      ],
+      [
+        "Habitação Unifamiliar em série (3)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Coletiva (3)",
+        "",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "Até 2 pav. = Facultado. Acima de 2 pav. = H/6, atendido o mínimo de 2,50 m.",
+        "-"
+      ],
+      [
+        "Habitação Institucional",
+        "",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1",
+        "",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 e 2",
+        "Comunitário 3",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "Até 2 pav. = Facultado. Acima de 2 pav. = H/6, atendido o mínimo de 2,50 m.",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal, de Bairro e Setorial",
+        "",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Posto de Abastecimento (2)",
+        "",
+        "1",
+        "2",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria Tipo 1 (4)",
+        "",
+        "-",
+        "-",
+        "400",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Uma habitação unifamiliar por lote.",
+      "Atender regulamentação específica.",
+      "Para conjuntos habitacionais de habitação coletiva e unifamiliar em série a área máxima do terreno deverá ser de até 20.000 (vinte mil) m².",
+      "Somente alvará de licença para localização em edificação existente."
+    ]
+  },
+  "QUADRO_XXVI": {
+    "titulo": "QUADRO XXVI - ZONA DE USO MISTO 2 -ZUM-2",
+    "idTabela": "quadro-xxvi",
+    "habitacionais": [
+      [
+        "Habitações Unifamiliares (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "15x450"
+      ],
+      [
+        "Habitações unifamiliares em série (1) (3)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Habitação Institucional",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "2,5 m.",
+        "-"
+      ],
+      [
+        "Habitação Coletiva (3)",
+        "",
+        "2",
+        "6",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "Até 2 pav. = Facultado. Acima de 2 pav. = H/6, atendido o mínimo de 2,50 m.",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1",
+        "",
+        "2",
+        "6",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 e 2",
+        "Comunitário 3",
+        "1",
+        "2",
+        "200 (4)",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal, de Bairro e Setorial",
+        "",
+        "1",
+        "2",
+        "200 (4)",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Estacionamento comercial e edifício garagem",
+        "",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Comunitário 2 - Culto Religioso",
+        "",
+        "1",
+        "2",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Posto de abastecimento (2)",
+        "",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Industria Tipo 1 (5)",
+        "",
+        "-",
+        "-",
+        "400",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Admitido até 3 (três) habitações unifamiliares por lote.",
+      "Atender regulamentação específica.",
+      "Para conjuntos habitacionais a área máxima do terreno deverá ser inferior a 20.000 m².",
+      "Admitido alvará de licença para portes superiores a 200 m² até o máximo de 400 m².",
+      "Somente alvará de licença para localização em edificação existente."
+    ]
+  },
+  "QUADRO_XXVII": {
+    "titulo": "QUADRO XXVII - ZONA DE USO MISTO 3 - ZUM-3",
+    "idTabela": "quadro-xxvii",
+    "habitacionais": [
+      [
+        "Habitações Unifamiliares (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "12x360"
+      ],
+      [
+        "Habitação Institucional",
+        "",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "2,5 m.",
+        "-"
+      ],
+      [
+        "Habitação Coletiva (3)",
+        "",
+        "2",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "Até 2 pav. = Facultado. Acima de 2 pav. = H/6, atendido o mínimo de 2,50 m.",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1",
+        "",
+        "2",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 e 2",
+        "Comunitário 3",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "Até 2 pav. = Facultado. Acima de 2 pav. = H/6, atendido o mínimo de 2,50 m.",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal, de Bairro e Setorial",
+        "",
+        "1",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Estacionamento comercial e edifício garagem",
+        "",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Posto de abastecimento (2)",
+        "",
+        "1",
+        "2",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Industria Tipo 1 (5)",
+        "",
+        "-",
+        "-",
+        "400",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Admitido até 3 (três) habitações unifamiliares por lote.",
+      "Atender regulamentação específica.",
+      "Para conjuntos habitacionais a área máxima do terreno deverá ser inferior a 20.000 m².",
+      "Admitido alvará de licença para portes superiores a 200 m² até o máximo de 400 m².",
+      "Somente alvará de licença para localização em edificação existente."
+    ]
+  },
+  "QUADRO_XXVIII": {
+    "titulo": "QUADRO XXVIII - ZONA DE USO MISTO DO VALE DO PINHÃO – ZUMVP",
+    "idTabela": "quadro-xxviii",
+    "habitacionais": [
+      [
+        "Habitações Unifamiliares",
+        "",
+        "1 (1)",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "12x360"
+      ],
+      [
+        "Habitação Institucional",
+        "",
+        "1 (1)",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "2,5 m.",
+        "-"
+      ],
+      [
+        "Habitação Coletiva (4)",
+        "",
+        "1 (1)",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "Até 2 pav. = Facultado. Acima de 2 pav. = H/6, atendido o mínimo de 2,50 m.",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1",
+        "",
+        "1 (1)",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 e 2",
+        "Comunitário 3",
+        "1 (1)",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "Até 2 pav. = Facultado. Acima de 2 pav. = H/6, atendido o mínimo de 2,50 m.",
+        "-"
+      ],
+      [
+        "Comércio Vicinal, de Bairro e Setorial",
+        "",
+        "1 (1)",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Serviço Vicinal, de Bairro e Setorial",
+        "",
+        "1 (1)",
+        "4",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "-"
+      ],
+      [
+        "Estacionamento comercial e edifício garagem",
+        "",
+        "1 (1)",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria (5)",
+        "",
+        "1 (1)",
+        "4",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Industria Tipo 1 (6)",
+        "",
+        "-",
+        "-",
+        "400",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Os coeficientes podem ser cumulativos, até o máximo de 3, sendo 1 para cada tipo de uso.",
+      "Atender regulamentação específica.",
+      "A altura máxima pode ir de 8 a 12 pavimentos dependendo do coeficiente total.",
+      "Para conjuntos habitacionais a área máxima do terreno deverá ser de até 20.000 m².",
+      "Admitidas atividades produtivas vinculadas à economia criativa.",
+      "Somente alvará de licença para localização em edificação existente.",
+      "Análise pelo CMU de afastamentos distintos conforme o Plano de Ocupação proposto."
+    ]
+  },
+  "QUADRO_XXIX": {
+    "titulo": "QUADRO XXIX - ZONA SALDANHA MARINHO - ZSM",
+    "idTabela": "quadro-xxix",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5",
+        "25 (2)",
+        "-",
+        "15x450"
+      ],
+      [
+        "Habitação Coletiva, Institucional, Transitória 1",
+        "",
+        "2",
+        "6",
+        "-",
+        "100% no subsolo, térreo e 2º pav.; 50% nos demais",
+        "Facultado até 2º pav. Acima, recuo de 5m.",
+        "(2)",
+        "Até 2 pav. = Facultado. Acima de 2 pav. = H/6, atendido o mínimo de 2,50 m.",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 e 2",
+        "Comunitário 3 - Saúde e Ensino",
+        "1",
+        "6",
+        "-",
+        "100% no subsolo, térreo e 2º pav.; 50% nos demais",
+        "Facultado até 2º pav. Acima, recuo de 5m.",
+        "(2)",
+        "Até 2 pav. = Facultado. Acima de 2 pav. = H/6, atendido o mínimo de 2,50 m.",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal, de Bairro e Setorial",
+        "Supermercado e Centro Comercial",
+        "1",
+        "6",
+        "-",
+        "100% no subsolo, térreo e 2º pav.; 50% nos demais",
+        "Facultado até 2º pav. Acima, recuo de 5m.",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Edifício Garagem e Estacionamento Comercial (3)",
+        "",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "(2)",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria do Tipo 1 (4)",
+        "",
+        "-",
+        "-",
+        "200",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Uma habitação unifamiliar por lote.",
+      "Atender regulamentação específica.",
+      "Obrigatório comércio/serviço no térreo com acesso direto à via pública, ocupando no mínimo 50% da testada.",
+      "Somente alvará de licença para localização em edificação existente."
+    ]
+  },
+  "QUADRO_XXX": {
+    "titulo": "QUADRO XXX - ZONA SÃO FRANCISCO – ZFR",
+    "idTabela": "quadro-xxx",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "",
+        "1",
+        "2",
+        "-",
+        "50",
+        "5 (2)",
+        "25 (3)",
+        "-",
+        "15x450"
+      ],
+      [
+        "Habitação Coletiva (6), Institucional, Transitória 1",
+        "",
+        "2",
+        "6",
+        "-",
+        "50",
+        "5 (2)",
+        "25 (3)",
+        "Até 2 pav. = Facultado. Acima de 2 pav. = H/6, atendido o mínimo de 2,50 m.",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1, 2 - Lazer, Cultura (4), Culto Religioso",
+        "Comunitário 2 e 3 - Ensino",
+        "1",
+        "6",
+        "-",
+        "50",
+        "5 (2)",
+        "25 (3)",
+        "Até 2 pav. = Facultado. Acima de 2 pav. = H/6, atendido o mínimo de 2,50 m.",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal, de Bairro e Setorial (7)",
+        "Supermercados e Centros Comerciais",
+        "1",
+        "6",
+        "-",
+        "50",
+        "5 (2)",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Estacionamento Comercial e Edifício Garagem (5) (6)",
+        "",
+        "1",
+        "6",
+        "-",
+        "50",
+        "5 (2)",
+        "25 (3)",
+        "-",
+        "-"
+      ],
+      [
+        "Indústria Tipo 1 (8)",
+        "",
+        "-",
+        "-",
+        "200",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Uma habitação unifamiliar por lote.",
+      "A critério do CMU, pode ser admitido alinhamento predial se >70% da quadra já estiver assim.",
+      "Atender regulamentação específica.",
+      "Com exceção de canchas desportivas.",
+      "Obrigatório comércio/serviço no térreo com acesso direto.",
+      "Parâmetros especiais para lotes na Rua Treze de Maio.",
+      "Com exceção de comércio/oficinas de veículos e borracharias.",
+      "Somente alvará de licença para localização em edificação existente."
+    ]
+  },
+  "QUADRO_XXXI": {
+    "titulo": "QUADRO XXXI - ZONA EDUCACIONAL – ZE",
+    "idTabela": "quadro-xxxi",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "-",
+        "0,5",
+        "2",
+        "-",
+        "30",
+        "10",
+        "25 (3)",
+        "-",
+        "20x600"
+      ],
+      [
+        "Habitação Coletiva",
+        "-",
+        "0,5",
+        "4 (2)",
+        "-",
+        "30",
+        "10",
+        "25 (3)",
+        "5",
+        "-"
+      ],
+      [
+        "Habitação Transitória 1",
+        "-",
+        "0,5",
+        "4 (2)",
+        "-",
+        "30",
+        "10",
+        "25 (3)",
+        "5",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comunitário 1 e 2",
+        "",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Comunitário 3 - Ensino",
+        "-",
+        "0,5",
+        "4 (2)",
+        "-",
+        "30",
+        "10",
+        "25 (3)",
+        "5",
+        "-"
+      ],
+      [
+        "Usos vinculados às atividades de Ensino",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Serviços Públicos",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal e de Bairro",
+        "-",
+        "-",
+        "-",
+        "200",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Uma habitação unifamiliar por lote.",
+      "A critério do CMU, podem ser autorizadas edificações com altura superior a 4 pavimentos.",
+      "Atender regulamentação específica."
+    ]
+  },
+  "QUADRO_XXXII": {
+    "titulo": "QUADRO XXXII - ZONA MILITAR – ZM",
+    "idTabela": "quadro-xxxii",
+    "habitacionais": [
+      [
+        "Habitações Unifamiliares",
+        "-",
+        "0,5",
+        "2",
+        "-",
+        "30",
+        "10",
+        "25 (1)",
+        "-",
+        "20x600"
+      ],
+      [
+        "Habitação Coletiva",
+        "-",
+        "0,5",
+        "4",
+        "-",
+        "30",
+        "10",
+        "25 (1)",
+        "5",
+        "-"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Usos vinculados às atividades militares",
+        "-",
+        "0,5",
+        "4",
+        "-",
+        "30",
+        "10",
+        "25 (1)",
+        "5",
+        "-"
+      ],
+      [
+        "Comércio e Serviço Vicinal e de Bairro",
+        "-",
+        "-",
+        "-",
+        "200",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Atender regulamentação específica."
+    ]
+  },
+  "QUADRO_XXXIII": {
+    "titulo": "QUADRO XXXIII - ZONA POLO DE SOFTWARE – ZPS",
+    "idTabela": "quadro-xxxiii",
+    "habitacionais": [
+      [
+        "Habitação Unifamiliar (1)",
+        "-",
+        "1",
+        "2",
+        "-",
+        "50",
+        "10",
+        "25 (2)",
+        "-",
+        "20x2000"
+      ]
+    ],
+    "naoHabitacionais": [
+      [
+        "Comércio, Serviço e Indústria de Tecnologia da Informação e Comunicação",
+        "-",
+        "1",
+        "4",
+        "-",
+        "50",
+        "10",
+        "25 (2)",
+        "2,5",
+        "-"
+      ],
+      [
+        "Atividades complementares (3)",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    ],
+    "notas": [
+      "Uma habitação unifamiliar por lote.",
+      "Atender regulamentação específica.",
+      "Serão admitidas atividades complementares, tais como: restaurantes, lanchonetes, papelaria e similares."
+    ]
+  }
+}

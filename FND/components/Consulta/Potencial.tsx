@@ -337,17 +337,17 @@ export default function Potencial() {
     <>
       <div className="relative">
         {loteSelecionado && (
-          <div className="absolute top-0 left-0 z-[999] w-80 h-full bg-sidebar border border-gray-300 p-4 overflow-y-auto max-h-[90vh] text-sm">
+          <div className="absolute top-0 left-0 z-[666] w-80 h-full bg-sidebar border border-gray-300 p-4 overflow-y-auto max-h-[90vh] text-sm">
             <div className="flex justify-between items-center mb-3">
-              <h2 className="font-mono text-base">Informações do Lote</h2>
+              <h2 className="lato-regular text-base">Informações do Lote</h2>
               <button
                 onClick={() => setLoteSelecionado(null)}
-                className="text-base hover:text-red-500"
+                className="lato-regular text-base hover:text-red-500"
               >
                 ✕
               </button>
             </div>
-            <div className="space-y-1 text-base font-sans">
+            <div className="lato-regular space-y-1 text-base font-sans">
               <p><b>Indicação Fiscal:</b> {loteSelecionado.gtm_ind_fiscal || "—"}</p>
               <p><b>Coordenada X:</b> {loteSelecionado.coordenadas.x}</p>
               <p><b>Coordenada Y:</b> {loteSelecionado.coordenadas.y}</p>
@@ -360,7 +360,7 @@ export default function Potencial() {
           </div>
         )}
 
-        <div ref={mapRef} className="w-full h-[700px] rounded border" />
+        <div ref={mapRef} className="lato-regular w-full h-[700px] rounded border" />
       </div>
     </>
   );
