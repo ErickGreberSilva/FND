@@ -11,13 +11,16 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-6">
       <Potencial />
+      <PotencialTable />
+      <QuadroZoneamento />
+      <LoteValores />
       <LoteKonva />
       <SunPathCuritiba />
       <Diagram2D />
-      <PotencialTable />
-      <QuadroZoneamento />
+
+
       <LoteSVGComCotas />
-      <LoteValores />
+
     </div>
   );
 }

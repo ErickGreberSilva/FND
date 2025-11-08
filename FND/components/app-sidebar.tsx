@@ -51,7 +51,7 @@ const data = {
       icon: IconListDetails,
     },
     {
-      title: "WOP",
+      title: "Diagrama Solar",
       url: "#",
       icon: IconChartBar,
     },

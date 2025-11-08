@@ -356,18 +356,16 @@ table.ptable tr {
 }
 
 /* Estilo geral dos controles Leaflet */
-.leaflet-control {
+/* .leaflet-control {
   background-color: var(--leaflet-bg) !important;
-  /* fundo semitransparente */
   color: var(--leaflet-color) !important;
-  /* texto branco */
   border-radius: 8px !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
   font-family: "Inter", sans-serif;
 }
 
-/* Botões (zoom +, zoom -) */
+
 .leaflet-bar a {
   background-color: var(--leaflet-bg) !important;
   color: var(--leaflet-color) !important;
@@ -375,40 +373,39 @@ table.ptable tr {
   border-radius: 2px;
 }
 
-.leaflet-bar a:hover {
+/* .leaflet-bar a:hover {
   background-color: var(--leaflet-bg) !important;
   color: #fff !important;
 }
 
-/* Escala gráfica */
-.leaflet-control-scale-line {
+
+/* .leaflet-control-scale-line {
   background: var(--leaflet-bg)  !important;
   color: var(--leaflet-color) !important;
   border: none !important;
   border-radius: 2px;
-}
+} */
 
-/* Caixa de camadas */
-.leaflet-control-layers {
+
+/* .leaflet-control-layers {
   background-color: rgba(25, 25, 25, 0.8) !important;
   color: var(--leaflet-color) !important;
   border-radius: 8px !important;
-}
+} */
 
-.leaflet-control-layers-selector {
-  accent-color: var(--primary);
+/* .leaflet-control-layers-selector {
+  accent-color: var(--primary);}
   /* cor do checkbox */
-}
 
 
-.leaflet-control-geocoder {
+/* .leaflet-control-geocoder {
   background:var(--leaflet-bg) !important;
   color: var(--leaflet-color) !important;
   border-radius: 8px !important;
   border: 1px solid #444;
-}
+} */
 
-.leaflet-control-geocoder input {
+/* .leaflet-control-geocoder input {
   background:var(--leaflet-bg) !important;
   color:var(--leaflet-color);
   border: none;
@@ -419,9 +416,9 @@ table.ptable tr {
 :root {
   --leaflet-bg: rgba(255, 255, 255, 0.9);
   --leaflet-color: #000;
-}
+} */
 
-.dark {
+/* .dark {
   --leaflet-bg: rgba(30, 30, 30, 0.9);
   --leaflet-color: #fff;
 }
@@ -434,4 +431,4 @@ table.ptable tr {
 .leaflet-control-geocoder-icon { background-color: var(--leaflet-bg) !important;
   color: var(--leaflet-color) !important;}
 
-  .valign-top {vertical-align: top; }
+.valign-top {vertical-align: top; }  */

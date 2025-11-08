@@ -282,57 +282,197 @@ export default function Potencial() {
 
   // =========================================================================== Consultas e HIGHLIGHT
   useEffect(() => {
-    if (!ifiscal || !map || typeof window.L?.esri === "undefined") return;
-
-    // Remove destaque anterior
-    if (highlightGeoJson) {
-      map.removeLayer(highlightGeoJson);
-      setHighlightGeoJson(null);
+    if (!ifiscal || !map || typeof window.L?.esri === "undefined") {
+      setDownloadReady(false);
+      return;
     }
 
-    const L = window.L;
-    const featureLayer = L.esri.featureLayer({
-      url: "https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_GeoCuritiba_MapaCadastral/MapServer/15",
-      where: `gtm_ind_fiscal = '${ifiscal}'`,
-      simplifyFactor: 0.5,
-      precision: 5,
+    map.eachLayer((layer: any) => {
+      if (layer.options?.url?.includes("/MapServer/16")) {
+        map.removeLayer(layer);
+      }
     });
 
-    featureLayer.query().where(`gtm_ind_fiscal = '${ifiscal}'`).run((err: any, featureCollection: any) => {
-      if (err || !featureCollection.features.length) return;
+    const L = window.L;
+    const highlightLayer = L.esri
+      .featureLayer({
+        url: "https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_GeoCuritiba_MapaCadastral/MapServer/16",
+        where: `gtm_ind_fiscal = '${ifiscal}'`,
+        style: { color: "red", weight: 3, fillOpacity: 0.1 },
+      })
+      .addTo(map);
 
-      const geoJsonLayer = L.geoJSON(featureCollection, {
-        style: {
-          color: "#ff0000",
-          weight: 4,
-          fillOpacity: 0.2,
-        },
-      }).addTo(map);
+    highlightLayer.once("load", function (this: any) {
+      this.query()
+        .where(`gtm_ind_fiscal = '${ifiscal}'`)
+        .bounds(async (err: any, bounds: any) => {
+          if (err || !bounds?.isValid()) {
+            setDownloadReady(false);
+            return;
+          }
 
-      setHighlightGeoJson(geoJsonLayer);
-      const bounds = geoJsonLayer.getBounds();
-      if (bounds.isValid()) map.fitBounds(bounds, { maxZoom: 21 });
+          map.fitBounds(bounds, { maxZoom: 21 });
 
-      // Efeito de piscar o destaque (3x)
-      let visible = true;
-      let blinkCount = 0;
-      const interval = setInterval(() => {
-        visible = !visible;
-        if (visible) map.addLayer(geoJsonLayer);
-        else map.removeLayer(geoJsonLayer);
-        blinkCount++;
-        if (blinkCount > 5) {
-          clearInterval(interval);
-          map.addLayer(geoJsonLayer);
-        }
-      }, 400);
+          const R = 6378137;
+          const latLngToWebMercator = (latLng: any) => ({
+            x: R * latLng.lng * (Math.PI / 180),
+            y:
+              R *
+              Math.log(Math.tan(Math.PI / 4 + (latLng.lat * Math.PI) / 360)),
+          });
+
+          const mapBounds = map.getBounds();
+          const sw = mapBounds.getSouthWest();
+          const ne = mapBounds.getNorthEast();
+          const extent = {
+            xmin: latLngToWebMercator(sw).x,
+            ymin: latLngToWebMercator(sw).y,
+            xmax: latLngToWebMercator(ne).x,
+            ymax: latLngToWebMercator(ne).y,
+          };
+
+          const geometry = {
+            ...extent,
+            spatialReference: { wkid: 102100, latestWkid: 3857 },
+          };
+          const geometryStr = encodeURIComponent(JSON.stringify(geometry));
+
+          const queryUrl = `https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_GeoCuritiba_MapaCadastral/MapServer/15/query?f=json&where=1%3D1&returnGeometry=true&spatialRel=esriSpatialRelIntersects&geometry=${geometryStr}&geometryType=esriGeometryEnvelope&inSR=102100&outFields=*&outSR=102100&resultOffset=0&resultRecordCount=2000`;
+
+          try {
+            const response = await fetch(queryUrl);
+            const data = await response.json();
+            const formatted = formatGeoJson(data);
+            setLotesNoEntorno(formatted);
+            setDownloadReady(true);
+             } catch (e) {
+            console.error("Erro ao buscar lotes:", e);
+            setDownloadReady(false);
+          }
+          });
     });
   }, [ifiscal, map]);
 
   // =========================================================================== Download JSON e DWG
   // (mantido igual ao seu código original)
   // ===========================================================================
-
+const handleDownloadDWG = async () => {
+    if (!lotesNoEntorno) return;
+    setProcessing(true);
+    try {
+      const uploadUrl =
+        "https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/ExportToFile/GPServer/uploads/upload?";
+      const blob = new Blob([JSON.stringify(lotesNoEntorno)], {
+        type: "application/json",
+      });
+      const formData = new FormData();
+      formData.append("file", blob, "dados_formatados.json");
+      formData.append("f", "json");
+      const uploadResponse = await fetch(uploadUrl, {
+        method: "POST",
+        body: formData,
+      });
+      const uploadResult = await uploadResponse.json();
+      const itemID = uploadResult?.item?.itemID;
+      if (!itemID) throw new Error("Falha ao obter itemID.");
+      const submitUrl =
+        "https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/ExportToFile/GPServer/ExportToFile/submitJob";
+      const params = new URLSearchParams();
+      params.append("input_json_file", JSON.stringify({ itemID }));
+      params.append("Output_Type", "CAD");
+      params.append("output_cad_type", "DWG_R2010");
+      params.append("sr_output_wkid", "3857");
+      params.append("f", "json");
+      const submitResponse = await fetch(submitUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: params.toString(),
+      });
+      const submitResult = await submitResponse.json();
+      const jobId = submitResult?.jobId;
+      if (!jobId) throw new Error("Falha ao submeter job.");
+      const statusUrl = `https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/ExportToFile/GPServer/ExportToFile/jobs/${jobId}?f=json`;
+      let status = "esriJobSubmitted";
+      while (
+        ["esriJobSubmitted", "esriJobExecuting", "esriJobWaiting"].includes(status)
+      ) {
+        await new Promise((r) => setTimeout(r, 3000));
+        const statusRes = await fetch(statusUrl);
+        const statusData = await statusRes.json();
+        status = statusData?.jobStatus;
+        if (status === "esriJobFailed") throw new Error("Job falhou.");
+      }
+      const resultUrl = `https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/ExportToFile/GPServer/ExportToFile/jobs/${jobId}/results/output_filename?f=json`;
+      const resultRes = await fetch(resultUrl);
+      const resultData = await resultRes.json();
+      const downloadUrl = resultData?.value?.url;
+      if (downloadUrl) {
+        window.open(downloadUrl, "_blank");
+      } else {
+        throw new Error("URL do DWG não retornada.");
+      }
+    } catch (err) {
+      console.error("Erro ao gerar DWG:", err);
+    } finally {
+      setProcessing(false);
+    }
+  };
+  // =========================================================================== REF de Nivel
+  const [processingRN, setProcessingRN] = useState(false);
+  const handleDownloadRN = async () => {
+    if (!ifiscal) {
+      console.warn("Nenhuma indicação fiscal disponível.");
+      return;
+    }
+    setProcessingRN(true);
+    try {
+      const submitUrl = `https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/RN/GPServer/RN/submitJob?Indicação_Fiscal=${encodeURIComponent(
+        ifiscal
+      )}&rn=1100&cone=43%2C5&Solicitacao=Texto+oriundo+do+campo+geo_pzp_solic+da+camada+de+lotes&buffer=60&Layout=Paisagem&env%3AoutSR=&env%3AprocessSR=&returnZ=false&returnM=false&returnTrueCurves=false&context=&f=json`;
+      const submitRes = await fetch(submitUrl);
+      const submitData = await submitRes.json();
+      const jobId = submitData.jobId;
+      if (!jobId) throw new Error("Job ID não retornado.");
+      let status = "esriJobSubmitted";
+      const statusUrl = `https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/RN/GPServer/RN/jobs/${jobId}?f=json`;
+      while (
+        ["esriJobSubmitted", "esriJobExecuting", "esriJobWaiting"].includes(status)
+      ) {
+        await new Promise((r) => setTimeout(r, 3000));
+        const statusRes = await fetch(statusUrl);
+        const statusData = await statusRes.json();
+        status = statusData.jobStatus;
+        if (status === "esriJobFailed") throw new Error("Job RN falhou.");
+      }
+      const resultUrl = `https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/RN/GPServer/RN/jobs/${jobId}/results/Result?f=json`;
+      const resultRes = await fetch(resultUrl);
+      const resultData = await resultRes.json();
+      const downloadUrl = resultData.value?.url;
+      if (downloadUrl) {
+        window.open(downloadUrl, "_blank");
+      } else {
+        throw new Error("URL do resultado não retornada.");
+      }
+    } catch (err) {
+      console.error("❌ Erro ao gerar Referência de Nível:", err);
+      alert("Erro ao gerar RN. Verifique o console.");
+    } finally {
+      setProcessingRN(false);
+    }
+  };
+  // ===========================================================================  Dados Json Base
+  const handleDownloadJSON = () => {
+    if (!lotesNoEntorno) return;
+    const blob = new Blob([JSON.stringify(lotesNoEntorno, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "features.json";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
   return (
     <>
       <div className="relative">
@@ -361,7 +501,30 @@ export default function Potencial() {
         )}
 
         <div ref={mapRef} className="lato-regular w-full h-[700px] rounded border" />
+      
       </div>
+      <div> <div className="mt-2 mr-7 flex justify-end gap-3">
+        <Button
+          onClick={handleDownloadRN}
+          disabled={!ifiscal || processingRN}
+          variant="outline"
+        >
+          {processingRN ? "Gerando RN..." : "Baixar Referência de Nível"}
+        </Button>
+        <Button
+          onClick={handleDownloadJSON}
+          disabled={!downloadReady}
+          variant="default"
+        >
+          Baixar Dados Entorno
+        </Button>
+        <Button
+          onClick={handleDownloadDWG}
+          disabled={!downloadReady || processing}
+          variant="default"
+        >
+          {processing ? "Gerando DWG..." : "Baixar DWG"}
+        </Button> </div></div>
     </>
   );
 }
